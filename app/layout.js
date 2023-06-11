@@ -1,9 +1,11 @@
 'use client';
 
-import { createContext } from 'react'
+import React, { useEffect, useState } from 'react';
 import './globals.css'
 import { Inter } from 'next/font/google'
 
+import Image from 'next/image';
+import loadingGif from '../images/loading.gif'
 const inter = Inter({ subsets: ['latin'] })
 
 // export const metadata = {
@@ -12,9 +14,13 @@ const inter = Inter({ subsets: ['latin'] })
 // }
 
 export default function RootLayout({ children }) {
+  let [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setLoading(false);
+  }, []);
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}> {loading==false ? children : <Image style={{margin:'34vh 40vw',width:'400px',height:'auto'}} src={loadingGif}/>}</body>
     </html>
   )
 }
