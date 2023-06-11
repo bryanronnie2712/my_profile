@@ -1,4 +1,4 @@
-// 'use client';
+'use client';
 
 import Image from 'next/image';
 import javaLogo from '../images/java-logo-1.png';
