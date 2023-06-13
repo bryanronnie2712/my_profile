@@ -181,7 +181,7 @@ a {
   -o-transition: 0.35s cubic-bezier(0.54, 1.6, 0.5, 1);
   -webkit-transition: 0.35s cubic-bezier(0.54, 1.6, 0.5, 1);
   transition: 0.35s cubic-bezier(0.54, 1.6, 0.5, 1);
-  background: url("https://get.wallhere.com/photo/1920x1080-px-flag-UK-Union-Jack-1222736.jpg");
+  background: url('/images/UK_Flag.jpg');
   background-size: 50px ;
   background-repeat: no-repeat;
   background-position: -2px;
