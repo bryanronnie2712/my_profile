@@ -86,7 +86,7 @@
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 body {
@@ -131,13 +131,7 @@ a {
   transition: 0.35s cubic-bezier(0.54, 1.6, 0.5, 1);
 }
 .toggleWrapper {
-  /* margin: auto; */
-    /* padding: 10px 20px; */
-    /* width: 72px; */
-    /* border: 1px solid lightgray; */
-    /* margin-top: 20px; */
-    /* border-radius: 5px; */
-    /* background: white; */
+
 }
 .toggleWrapper input.mobileToggle {
   opacity: 0;
@@ -174,6 +168,7 @@ a {
 }
 .toggleWrapper input.mobileToggle + label:after {
   content: "";
+  cursor: pointer;
   position: absolute;
   display: block;
   box-shadow: 0 0 0 1px hsla(0, 0%, 0%, 0.1), 0 4px 0px 0 hsla(0, 0%, 0%, 0.04), 0 4px 9px hsla(0, 0%, 0%, 0.13), 0 3px 3px hsla(0, 0%, 0%, 0.05);
@@ -200,6 +195,7 @@ a {
 }
 .toggleWrapper input.mobileToggle:checked + label:after {
   left: 34px;
+  cursor: pointer;
   background: linear-gradient(180deg, #000 33.333%, #FF0000 33.33% 70%, #FFCC00 70%);
   background-position-y: 'center';
   background-size: 'cover';

@@ -1,9 +1,12 @@
 'use client';
 
 import './globals.css'
+
 import Image from 'next/image';
 import javaLogo from '../images/java-logo-1.png';
 import reactReduxLogo from '../images/react-redux-logo.jpg';
+import reactLogo from '../images/react-logo.png';
+
 import postgresLogo from '../images/postgresql_logo.png';
 import fastapiLogo from '../images/fastapi-logo.png';
 import nodejsLogo from '../images/nodejsLogo.jpg';
@@ -11,6 +14,10 @@ import graphqlLogo from '../images/graphql-logo.png';
 import nextjsLogo from '../images/nextjsLogo.png';
 import springBootLogo from  '../images/spring-boot-logo.png'
 import gcpLogo from '../images/gcp-logo.png'
+import mongodbLogo from '../images/mongodb-logo.png'
+import muiLogo from '../images/material-ui-logo.jpg'
+import d3Logo from '../images/d3Logo.png'
+import ExpressJSLogo from '../images/ExpressJSLogo.png'
 
 // import styled from 'styled-components';
 import React, { useEffect, useState } from 'react';
@@ -27,11 +34,9 @@ import styled, { keyframes, css } from 'styled-components';
 const fadeInAnimation = keyframes`
   from {
     opacity: 0;
-    // transform: rotateX( 0deg )
   }
   to {
     opacity: 1;
-    // transform: rotateX( 90deg )
   }
 `;
 
@@ -50,10 +55,12 @@ const AnimatedText = styled.span`
 
 const NavBar = styled.div`
 height: 50px;
-background-color: #3e3e3e;
-color: black;
-border-bottom: 2px solid #767676;
-  // box-shadow: inset -1px 1px 1px black;
+border-bottom: 2px solid #50505066;
+position: sticky;
+top: 0px;
+background-color: #000000ab;
+z-index: 1000;
+backdrop-filter: saturate(110%) blur(5px);
 `;
 
 const CVDownloadButton = styled.button`
@@ -80,7 +87,6 @@ const Banner = styled.div`
   height:450px;
   background-size: cover;
   background-repeat: no-repeat; 
-  // background:url("https://images.hdqwalls.com/download/star-sky-5k-fg-1920x1080.jpg");
 `;
 
 const BannerText = styled.div`
@@ -95,11 +101,16 @@ const BannerText = styled.div`
 const Page = styled.div`
   background: ${props => props.dark ? "black" : "white"};
   color: ${props => props.dark ? '#ccc' : "black"};
-
   padding: 50px 20px;
 `;
 
+
+
 const Title = styled.h1`
+background: ${props => props.dark ? "linear-gradient(275deg,#757575,#e3e3e3, #676666)" : "none"};
+-webkit-background-clip: ${props => props.dark ?   "text" : "none"};
+-webkit-text-fill-color: ${props => props.dark ? "transparent": "none"};
+
   margin-bottom: 25px;
   text-align: center;
   color: black;
@@ -120,6 +131,25 @@ const SubHeading = styled.span`
   font-weight: 300;
 `;
 
+const ProjectCard = styled.div`
+  width:350px; 
+  aspect-ratio: 3 / 4;
+  border-width: 4px;
+  border-style: solid;
+  border-radius:10px;
+  background: url(${props => 'images/' + props.background});
+  background-size: 331px 372px;
+  background-repeat: no-repeat;
+  box-shadow: 4px 6px 3px white;
+`;
+
+const ProjectTitle = styled.div`
+  text-align: center;
+  font-size: 35px;
+  /* margin: 118% 0 0 0; */
+  position: relative;
+  top: 85%;
+`;
 
 export default function Home() {
   const [siteLanguage, setSiteLanguage] = useState('en');
@@ -130,7 +160,7 @@ export default function Home() {
 
     setTimeout(() => {
       if (siteLanguage == 'de') {
-        setSiteText({ language: 'Deutsch', bannerTitle: 'Mein Portfolio',resumeButton:'Mein Lebenslauf', banner: "Hallo! Ich heiße Bryan", subPageTitles: ["Meine Tech-Stacks", "My Portfolio", "College Projects",'Professionell',"Freizeit"] })
+        setSiteText({ language: 'Deutsch', bannerTitle: 'Mein Portfolio',resumeButton:'Mein Lebenslauf', banner: "Hallo! Ich heiße Bryan", subPageTitles: ["Meine Tech-Stacks", "Mein Portfolio", "College-Projekte",'Professionell',"Freizeit"] })
       }
       else if (siteLanguage == 'en') {
         setSiteText({ language: 'English', bannerTitle: 'My Portfolio',resumeButton:'My CV/Resume', banner: "Hello! My name is Bryan", subPageTitles: ["My Tech Stacks", "My Portfolio", "College Projects",'Professional',"Leisure"] })
@@ -169,7 +199,7 @@ export default function Home() {
       <Banner className='banner'>
       <div class="wave"></div>
 
-<Transition in={siteText.language} key={siteText.language} timeout={1000}>
+      <Transition in={siteText.language} key={siteText.language} timeout={1000}>
         {(state) => (
           <AnimatedText animate={state === 'entered'}>
             <BannerText >{siteText.banner}</BannerText>
@@ -191,18 +221,18 @@ export default function Home() {
       
 
         
-<SubHeading>
+          <SubHeading>
             <Transition in={siteText.language} key={siteText.language} timeout={1000}>
             {(state) => (
-              <AnimatedText style={{    position: 'relative',background: 'white',top: '18px'}} animate={state === 'entered'}>{siteText.subPageTitles[3]} </AnimatedText>
+              <AnimatedText style={{ border:'1px solid', borderRadius:'35px',padding:'0 15px',   position: 'relative',background: 'white',top: '18px', top: '27px',fontSize:' 25px',margin: '70px'}} animate={state === 'entered'}>{siteText.subPageTitles[3]} </AnimatedText>
               )}
             </Transition>
           </SubHeading>
-        <div style={{display:'flex', flexWrap: 'wrap', flexDirection:'row', justifyContent:'center', border: '1px solid black',borderRadius: '10px', padding: '3%'}}>
-          
 
-
+        <div style={{display:'flex', flexWrap: 'wrap', flexDirection:'row', justifyContent:'center',margin: '10px 40px', border: '1px solid black',borderRadius: '10px', padding: '3%'}}>
           <Image height={120} src={reactReduxLogo} alt='React+Redux'/>
+          <Image style={{margin: '12px 4px 10px 4px'}} height={93} src={muiLogo} alt='muiLogo'/>
+          <Image style={{margin: '35px 12px 20px 12px'}} height={39} src={d3Logo} alt='d3Logo'/>
           <Image style={{margin: '18px'}} height={85} src={springBootLogo} alt='springBootLogo'/>
           <Image style={{margin: '4px 15px'}} height={110} src={nodejsLogo} alt='nodejsLogo'/>
           <Image style={{margin: '15px 20px'}} height={90} src={graphqlLogo} alt='graphqlLogo'/>
@@ -211,46 +241,50 @@ export default function Home() {
         </div>
 
 
-<SubHeading>
+          <SubHeading>
             <Transition in={siteText.language} key={siteText.language} timeout={1000}>
             {(state) => (
-              <AnimatedText style={{    position: 'relative',background: 'white',top: '18px'}} animate={state === 'entered'}>{siteText.subPageTitles[4]} </AnimatedText>
+              <AnimatedText style={{    position: 'relative',background: 'white',top: '18px', top: '27px',fontSize:' 25px',margin: '70px'}} animate={state === 'entered'}>{siteText.subPageTitles[4]} </AnimatedText>
               )}
             </Transition>
           </SubHeading>
-        <div style={{display:'flex', flexWrap: 'wrap', flexDirection:'row', justifyContent:'center', border: '1px solid black',borderRadius: '10px', padding: '3%'}}>
 
-          
-
-        
-        
-        <Image style={{margin: '13px 15px'}} height={85} src={nextjsLogo}/>
-        <Image style={{margin: '4px 15px'}} height={100} src={nodejsLogo}/>
-        <Image style={{margin: '35px 10px'}} height={45} src={fastapiLogo}/>
+        <div style={{display:'flex', flexWrap: 'wrap', flexDirection:'row', justifyContent:'center',margin: '10px 40px', border: '1px solid black',borderRadius: '10px', padding: '3%'}}>
+          <Image style={{margin: '13px 15px'}} height={85} src={nextjsLogo}/>
+          <Image style={{margin: '14px 15px'}} height={80} src={reactLogo}/>
+          <Image style={{margin: '35px 14px 40px 19px'}} height={40} src={ExpressJSLogo} alt='ExpressJSLogo'/>
+          <Image style={{margin: '4px 15px'}} height={100} src={nodejsLogo}/>
+          <Image style={{margin: '35px 10px'}} height={45} src={fastapiLogo}/>
+          <Image style={{margin: '40px 0 40px 10px'}} height={33} src={mongodbLogo}/>
         </div>
       </Page>
 
       <Page dark>
-      <Transition in={siteText.language} key={siteText.language} timeout={1000}>
-        {(state) => (
-          <AnimatedText animate={state === 'entered'}>
-            <Title style={{ color: '#ccc' }}>{siteText.subPageTitles[1]}</Title>
-          </AnimatedText>
-        )}
-      </Transition>
-       
+        <Transition in={siteText.language} key={siteText.language} timeout={1000}>
+          {(state) => (
+            <AnimatedText animate={state === 'entered'}>
+              <Title dark>{siteText.subPageTitles[1]}</Title>
+            </AnimatedText>
+          )}
+        </Transition>
+
+        <div style={{display:'flex', padding:'5%', flexWrap: 'wrap', flexDirection:'row', justifyContent:'center',gap: '5%'}}>
+            <ProjectCard background={'video-conf.jpg'}> <ProjectTitle>BryMeet</ProjectTitle></ProjectCard>
+            <ProjectCard style={{backgroundSize: '345px 372px'}} background={'music.jpg'}> <ProjectTitle>Songs Entropy</ProjectTitle></ProjectCard>
+            <ProjectCard style={{backgroundSize: '611px 372px',backgroundPositionX: '-118px'}} background={'covid.png'}> <ProjectTitle>Covid-19 Tracker</ProjectTitle></ProjectCard>
+        </div>
       </Page>
 
-<Page>
-      <Transition in={siteText.language} key={siteText.language} timeout={1000}>
-        {(state) => (
-          
-          <Title>{siteText.subPageTitles[2]}</Title>
-        
+      <Page>
+        <Transition in={siteText.language} key={siteText.language} timeout={1000}>
+          {(state) => (
+            <AnimatedText animate={state === 'entered'}>
+              <Title>{siteText.subPageTitles[2]}</Title>
+            </AnimatedText>
           )}
         </Transition>
       
-</Page>
+      </Page>
 
 
 

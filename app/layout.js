@@ -15,12 +15,17 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function RootLayout({ children }) {
   let [loading, setLoading] = useState(true);
+
   useEffect(() => {
     setLoading(false);
   }, []);
+
+
+  console.log(loading);
+
   return (
     <html lang="en">
-      <body className={inter.className}> {loading==false ? children : <Image style={{margin:'34vh 40vw',width:'400px',height:'auto'}} src={loadingGif}/>}</body>
+      <body className={inter.className}> {loading==false ? children : <Image style={{margin:'14vh 25%',width:'50%',height:'auto'}} src={loadingGif}/>}</body>
     </html>
   )
 }
