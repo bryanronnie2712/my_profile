@@ -18,6 +18,9 @@ import mongodbLogo from '../images/mongodb-logo.png'
 import muiLogo from '../images/material-ui-logo.jpg'
 import d3Logo from '../images/d3Logo.png'
 import ExpressJSLogo from '../images/ExpressJSLogo.png'
+import LinkedInLogo from '../images/logo-linkedin-icon.png'
+import XingLogo from '../images/xing-logo.png'
+import PhoneLogo from '../images/phone-icon.png'
 
 // import styled from 'styled-components';
 import React, { useEffect, useState } from 'react';
@@ -141,6 +144,8 @@ const ProjectCard = styled.div`
   background-size: 331px 372px;
   background-repeat: no-repeat;
   box-shadow: 4px 6px 3px white;
+  margin-bottom: 25px;
+  cursor: pointer;
 `;
 
 const ProjectTitle = styled.div`
@@ -153,17 +158,17 @@ const ProjectTitle = styled.div`
 
 export default function Home() {
   const [siteLanguage, setSiteLanguage] = useState('en');
-  const [siteText, setSiteText] = useState({ language: '', bannerTitle: '', banner: "",resumeButton:'', subPageTitles: ["", "", "", "", ""] })
+  const [siteText, setSiteText] = useState({ language: '', bannerTitle: '', banner: "",resumeButton:'', subPageTitles: ["", "", "", "", "", ""], contactText:["",""] })
 
   useEffect(() => {
     
 
     setTimeout(() => {
       if (siteLanguage == 'de') {
-        setSiteText({ language: 'Deutsch', bannerTitle: 'Mein Portfolio',resumeButton:'Mein Lebenslauf', banner: "Hallo! Ich heiße Bryan", subPageTitles: ["Meine Tech-Stacks", "Mein Portfolio", "College-Projekte",'Professionell',"Freizeit"] })
+        setSiteText({ language: 'Deutsch', bannerTitle: 'Mein Portfolio',resumeButton:'Mein Lebenslauf', banner: "Hallo! Ich heiße Bryan", subPageTitles: ["Meine Tech-Stacks", "Mein Portfolio", "College-Projekte",'Professionell',"Freizeit","Kontaktieren Sie mich"], contactText:["Was ist Ihre größte Herausforderung, bei der ich Ihnen helfen kann? Schreiben Sie mir eine E-Mail an "," oder erreichen Sie mich unter:"] })
       }
       else if (siteLanguage == 'en') {
-        setSiteText({ language: 'English', bannerTitle: 'My Portfolio',resumeButton:'My CV/Resume', banner: "Hello! My name is Bryan", subPageTitles: ["My Tech Stacks", "My Portfolio", "College Projects",'Professional',"Leisure"] })
+        setSiteText({ language: 'English', bannerTitle: 'My Portfolio',resumeButton:'My CV/Resume', banner: "Hello! My name is Bryan", subPageTitles: ["My Tech Stacks", "My Portfolio", "College Projects",'Professional',"Leisure","Contact Me"], contactText:["What is your greatest challenge that I can help you with? Drop me a mail at ", " or reach me at:"]  })
       }
     }, 0);
     // console.log(siteLanguage)
@@ -269,9 +274,9 @@ export default function Home() {
         </Transition>
 
         <div style={{display:'flex', padding:'5%', flexWrap: 'wrap', flexDirection:'row', justifyContent:'center',gap: '5%'}}>
-            <ProjectCard background={'video-conf.jpg'}> <ProjectTitle>BryMeet</ProjectTitle></ProjectCard>
-            <ProjectCard style={{backgroundSize: '345px 372px'}} background={'music.jpg'}> <ProjectTitle>Songs Entropy</ProjectTitle></ProjectCard>
-            <ProjectCard style={{backgroundSize: '611px 372px',backgroundPositionX: '-118px'}} background={'covid.png'}> <ProjectTitle>Covid-19 Tracker</ProjectTitle></ProjectCard>
+            <ProjectCard onClick={(e) =>  window.open("https://bryanronnie2712.github.io/brymeet-page/index.html")} background={'video-conf.jpg'}> <ProjectTitle>BryMeet</ProjectTitle></ProjectCard>
+            <ProjectCard onClick={(e) =>  window.open("https://github.com/bryanronnie2712/songs-entropy")} style={{backgroundSize: '345px 372px'}} background={'music.jpg'}> <ProjectTitle>Songs Entropy</ProjectTitle></ProjectCard>
+            <ProjectCard onClick={(e) =>  window.open("https://bryanronnie2712.github.io/Covid19Tracker/index.html")} style={{backgroundSize: '611px 372px',backgroundPositionX: '-118px'}} background={'covid.png'}> <ProjectTitle>Covid-19 Tracker</ProjectTitle></ProjectCard>
         </div>
       </Page>
 
@@ -286,6 +291,52 @@ export default function Home() {
       
       </Page>
 
+      <Page dark style={{background: "rgb(2,0,36)", height:'400px'}}>
+        <Title dark>{siteText.subPageTitles[5]}</Title> 
+
+        <div>
+          <p style={{textAlign:'center'}}>
+          {siteText.contactText[0]}<a style={{textDecoration:'underline'}} href = "mailto: bryanronnie2000@gmail.com">bryanronnie2000@gmail.com</a>{siteText.contactText[1]}
+          </p>
+            
+        <div style={{display:'flex', justifyContent:'center' ,margin:'40px 0 0 0'}}>
+
+        <table>
+          <tr style={{height:'30px'}}>
+          <td  style={{marginRight: '12px'}}>
+          <Image style={{cursor:'pointer',    margin: '-0 0'}} onClick={(e) =>  window.open("https://www.linkedin.com/in/bryan-ronnie")} height={40} src={LinkedInLogo}/>
+          </td>
+          <td style={{transform: 'translate(0px, -3px)'}}>
+          <a style={{fontSize:'13px'}} onClick={(e) =>  window.open("https://www.linkedin.com/in/bryan-ronnie")}>https://www.linkedin.com/in/bryan-ronnie</a>
+          </td>
+          </tr>
+
+          <tr style={{height:'30px'}}>
+        <td >
+          <Image style={{cursor:'pointer', margin: '0px 4px'}} onClick={(e) =>  window.open("https://www.xing.com/profile/Bryan_Ronnie")} height={34} src={XingLogo}/>
+          </td>
+          <td style={{transform: 'translate(0px, -3px)'}}>
+          <a style={{fontSize:'13px'}} onClick={(e) =>  window.open("https://www.xing.com/profile/Bryan_Ronnie")}>https://www.xing.com/profile/Bryan_Ronnie</a>
+          </td>
+          </tr>
+
+          <tr style={{marginBottom:'15px'}}>
+          <td >
+          <a href="tel:+91 9442242812"><Image style={{cursor:'pointer',margin: '0px 4px'}} height={35} src={PhoneLogo}/></a>
+            </td>
+            <td >
+           <a style={{fontSize:'15px'}} href="tel:+91 9442242812">+91 9442242812</a>
+          </td>
+          </tr>
+        </table>
+
+        </div>
+
+        </div>
+      
+
+
+      </Page>
 
 
       {/* <body style="background: black;" class="profile-page sidebar-collapse" data-new-gr-c-s-check-loaded="14.1027.0" data-gr-ext-installed="">
