@@ -21,6 +21,7 @@ import ExpressJSLogo from '../images/ExpressJSLogo.png'
 import LinkedInLogo from '../images/logo-linkedin-icon.png'
 import XingLogo from '../images/xing-logo.png'
 import PhoneLogo from '../images/phone-icon.png'
+import Flow from '../images/flowdiagramanim.png';
 
 // import styled from 'styled-components';
 import React, { useEffect, useState } from 'react';
@@ -55,6 +56,13 @@ const AnimatedText = styled.span`
 
 
 
+
+const Star = styled.div`
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 2px;
+    background: white`;
 
 const NavBar = styled.div`
 height: 50px;
@@ -143,22 +151,84 @@ const ProjectCard = styled.div`
   background: url(${props => 'images/' + props.background});
   background-size: 331px 372px;
   background-repeat: no-repeat;
-  box-shadow: 4px 6px 3px white;
+  box-shadow: 4px 6px 3px ${props => props.dark? 'black' : 'white'};
   margin-bottom: 25px;
   cursor: pointer;
 `;
 
 const ProjectTitle = styled.div`
   text-align: center;
-  font-size: 35px;
+  font-size: 1.9rem;
   /* margin: 118% 0 0 0; */
   position: relative;
   top: 85%;
 `;
 
+
+
+
+const moveBackground = keyframes`
+  0% {
+    background-position: 15% 100%;
+  }
+  100% {
+    background-position: 15% 0%;
+  }
+`;
+
+const moveStripes = keyframes`
+  0% {
+    transform: translateY(700%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+`;
+
+const a = styled.A
+
+const StripesContainer = styled.div`
+
+// width: 509px;
+// height: 800px;
+
+animation: ${moveBackground} 10s linear infinite;
+background:url("https://images1.pixlis.com/background-image-stripes-and-lines-seamless-tileable-232prb.png");
+background-size: 68px 56px;
+  `;
+
+
+const AlternatingStripes = () => {
+  return (
+    <div style={{"display":"flex","justifyContent":"center","minWidth":"200px","height":"500px"}}>
+    <StripesContainer>
+      <Image height={500} src={Flow} alt='gcpLogo'/>
+    </StripesContainer>
+    </div>
+  );
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export default function Home() {
   const [siteLanguage, setSiteLanguage] = useState('en');
   const [siteText, setSiteText] = useState({ language: '', bannerTitle: '', banner: "",resumeButton:'', subPageTitles: ["", "", "", "", "", ""], contactText:["",""] })
+
+  const [flowView,setFlowView] = useState(true) 
+
+
 
   useEffect(() => {
     
@@ -223,7 +293,7 @@ export default function Home() {
       </Transition></Title>
         
 
-      
+
 
         
           <SubHeading>
@@ -234,8 +304,13 @@ export default function Home() {
             </Transition>
           </SubHeading>
 
-        <div style={{display:'flex', flexWrap: 'wrap', flexDirection:'row', justifyContent:'center',margin: '10px 40px', border: '1px solid black',borderRadius: '10px', padding: '3%'}}>
-          <Image height={120} src={reactReduxLogo} alt='React+Redux'/>
+          {/* <input type="checkbox" name="toggle1" className="mobileToggle" id="toggle1" onChange={(e) => setFlowView(!flowView)} />
+          <label  htmlFor="toggle1"></label> */}
+
+        <div style={{display:'flex', justifyContent:'center'}}>
+        <div style={{display:'flex', flexWrap: 'wrap', flexDirection:'row', justifyContent:'center', border: '1px solid black',borderRadius: '10px', padding: '3%'}}>
+          {/* {flowView? <> */}
+          <Image style={{animation: "fadeInAnimation 1s ease-in-out"}} height={120} src={reactReduxLogo} alt='React+Redux'/>
           <Image style={{margin: '12px 4px 10px 4px'}} height={93} src={muiLogo} alt='muiLogo'/>
           <Image style={{margin: '35px 12px 20px 12px'}} height={39} src={d3Logo} alt='d3Logo'/>
           <Image style={{margin: '18px'}} height={85} src={springBootLogo} alt='springBootLogo'/>
@@ -243,8 +318,12 @@ export default function Home() {
           <Image style={{margin: '15px 20px'}} height={90} src={graphqlLogo} alt='graphqlLogo'/>
           <Image style={{margin: '-4px 4px'}} height={130} src={postgresLogo} alt='postgresLogo'/>
           <Image style={{margin: '0px 4px'}} height={130} src={gcpLogo} alt='gcpLogo'/>
+{/* </> */}
+          {/* : <AlternatingStripes/>} */}
+        </div>
         </div>
 
+        
 
           <SubHeading>
             <Transition in={siteText.language} key={siteText.language} timeout={1000}>
@@ -274,7 +353,7 @@ export default function Home() {
         </Transition>
 
         <div style={{display:'flex', padding:'5%', flexWrap: 'wrap', flexDirection:'row', justifyContent:'center',gap: '5%'}}>
-            <ProjectCard onClick={(e) =>  window.open("https://bryanronnie2712.github.io/brymeet-page/index.html")} background={'video-conf.jpg'}> <ProjectTitle>BryMeet</ProjectTitle></ProjectCard>
+            <ProjectCard onClick={(e) =>  window.open("https://bryanronnie2712.github.io/brymeet-page/index.html")} style={{backgroundSize: '345px 372px'}} background={'video-conf.jpg'}> <ProjectTitle>BryMeet</ProjectTitle></ProjectCard>
             <ProjectCard onClick={(e) =>  window.open("https://github.com/bryanronnie2712/songs-entropy")} style={{backgroundSize: '345px 372px'}} background={'music.jpg'}> <ProjectTitle>Songs Entropy</ProjectTitle></ProjectCard>
             <ProjectCard onClick={(e) =>  window.open("https://bryanronnie2712.github.io/Covid19Tracker/index.html")} style={{backgroundSize: '611px 372px',backgroundPositionX: '-118px'}} background={'covid.png'}> <ProjectTitle>Covid-19 Tracker</ProjectTitle></ProjectCard>
         </div>
@@ -289,7 +368,15 @@ export default function Home() {
           )}
         </Transition>
       
+        <div style={{display:'flex', padding:'5%', flexWrap: 'wrap', flexDirection:'row', justifyContent:'center',gap: '5%'}}>
+            <ProjectCard dark onClick={(e) =>  window.open("https://bryanronnie2712.github.io/HTML/MyFirstWebPage.html")} style={{backgroundSize: '363px',backgroundPositionX: '-20px'}} background={'joynsteakslogo.png'}> <ProjectTitle>My First Web Project</ProjectTitle></ProjectCard>
+            <ProjectCard dark onClick={(e) =>  window.open("https://instagram-clone-4d25d.web.app/")} style={{backgroundSize: '320px 320px '}} background={'insta.jpg'}> <ProjectTitle>Instagram Clone</ProjectTitle></ProjectCard>
+            <ProjectCard  dark onClick={(e) =>  window.open("https://bryanronnie2712.github.io/text-editor/index.html")} background={'textEditor.png'}> <ProjectTitle>Text Editor</ProjectTitle></ProjectCard>
+        </div>
+
+
       </Page>
+
 
       <Page dark style={{background: "rgb(2,0,36)", height:'400px'}}>
         <Title dark>{siteText.subPageTitles[5]}</Title> 
