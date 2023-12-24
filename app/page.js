@@ -104,9 +104,13 @@ const BannerText = styled.div`
   display:inline-block;
   margin:200px 10%;
   font-size:45px;
-  font-family: circular;
+  font-family: 'Roboto-Regular';
   font-weight: 300;
-  color:black
+  background: linear-gradient(360deg, black,black, transparent);
+  filter: contrast(0.5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 `;
 
 const Page = styled.div`
@@ -185,7 +189,7 @@ const moveStripes = keyframes`
   }
 `;
 
-const a = styled.A
+
 
 const StripesContainer = styled.div`
 
@@ -247,7 +251,7 @@ export default function Home() {
   
 
   return (
-    <main className={inter.className}>
+    <main>
       <NavBar>
 
       <Transition in={siteText.language} key={siteText.language} timeout={1000}>

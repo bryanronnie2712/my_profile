@@ -2,11 +2,11 @@
 
 import React, { useEffect, useState } from 'react';
 import './globals.css'
-import { Inter } from 'next/font/google'
+// import { Inter } from 'next/font/google'
 
 import Image from 'next/image';
 import loadingGif from '../images/loading.gif'
-const inter = Inter({ subsets: ['latin'] })
+// const inter = Inter({ subsets: ['latin'] })
 
 // export const metadata = {
 //   title: 'Create Next App',
@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className={inter.className}> {loading==false ? children : <Image style={{margin:'14vh 25%',width:'50%',height:'auto'}} src={loadingGif}/>}</body>
+      <body> {loading==false ? children : <Image style={{margin:'14vh 25%',width:'50%',height:'auto'}} src={loadingGif}/>}</body>
     </html>
   )
 }
