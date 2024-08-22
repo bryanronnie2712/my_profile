@@ -200,7 +200,7 @@ export default function NavBar() {
         const popularLanguage = String(Object.values(languages)[0]);
         setLanguage(popularLanguage);
         
-        const llmResponse:string = String(runPrompt("Give a short salutation for the provided country. Take the local time of the capital city into consideration. No explanation needed, give purely the salutation. COUNTRY:" + languageData[0].name.common))
+        const llmResponse = await runPrompt("Give a short salutation for the provided country. Take the local time of the capital city into consideration. No explanation needed, give purely the salutation. COUNTRY:" + languageData[0].name.common)
         
         if(llmResponse)
         setSalutation(llmResponse);
