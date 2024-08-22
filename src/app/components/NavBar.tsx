@@ -150,6 +150,7 @@ function SlideTransition(props: SlideProps) {
 }
 
 export default function NavBar() {
+  const API_Key = String(process.env.NEXT_PUBLIC_API_KEY_2)
 
   const [state, setState] = useState<{
     open: boolean;
@@ -185,7 +186,7 @@ export default function NavBar() {
     const getCountryAndLanguage = async () => {
       try {
         // Get the user's IP and country
-        const ipResponse = await fetch('https://ipinfo.io/json?token=4386eb82d243d6');
+        const ipResponse = await fetch('https://ipinfo.io/json?token='+API_Key);
         const ipData = await ipResponse.json();
         const userCountry = ipData.country; // Country code, e.g., 'US'
         
@@ -199,8 +200,8 @@ export default function NavBar() {
         // Get the most popular language (this assumes the first language is the most popular)
         const popularLanguage = String(Object.values(languages)[0]);
         setLanguage(popularLanguage);
-        
-        const llmResponse = await runPrompt("Give a short salutation for the provided country. Take the local time of the capital city into consideration. No explanation needed, give purely the salutation. COUNTRY:" + languageData[0].name.common)
+
+        const llmResponse = await runPrompt("Give a short salutation for the provided country. Take the local time of the capital city into consideration. No explanation needed, give purely the salutation preferably with local language. COUNTRY:" + languageData[0].name.common)
         
         if(llmResponse)
         setSalutation(llmResponse);

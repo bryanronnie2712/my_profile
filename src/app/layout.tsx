@@ -11,10 +11,12 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({children}: Readonly<{children: React.ReactNode;}>) {
+  const API_Key = String(process.env.GA_ID)
+
   return (
     <html lang="en">
       <body suppressHydrationWarning={true} className={inter.className}>{children}</body>
-      <GoogleAnalytics gaId="G-DE48HKESR0" />
+      <GoogleAnalytics gaId={API_Key} />
     </html>
   );
 }
