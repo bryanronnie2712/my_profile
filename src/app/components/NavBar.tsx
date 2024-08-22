@@ -197,10 +197,10 @@ export default function NavBar() {
         setCountry(languageData[0].name.common);
         
         // Get the most popular language (this assumes the first language is the most popular)
-        const popularLanguage = Object.values(languages)[0];
+        const popularLanguage = String(Object.values(languages)[0]);
         setLanguage(popularLanguage);
         
-        const llmResponse:string = runPrompt("Give a short salutation for the provided country. Take the local time of the capital city into consideration. No explanation needed, give purely the salutation. COUNTRY:" + languageData[0].name.common)
+        const llmResponse:string = String(runPrompt("Give a short salutation for the provided country. Take the local time of the capital city into consideration. No explanation needed, give purely the salutation. COUNTRY:" + languageData[0].name.common))
         
         if(llmResponse)
         setSalutation(llmResponse);
@@ -218,7 +218,7 @@ export default function NavBar() {
 
   }, []);
 
-  const Message = <><h2 style={{textAlign: 'center'}}>If you're from {country}, {salutation} 😊</h2><div> My new smart webpage with AI Resume Match feature is currently in development. Please check <a style={{color:'rgb(0 113 227)', textDecoration:'underline'}} href="https://my-profile-1ubas3rts-bryanronnie2712.vercel.app/">my old portfolio <div style={{height:'13px', width:'13px', display: 'inline-block'}}>{openInWindowSVG}</div></a> for the moment. </div></>
+  const Message = <><h2 style={{textAlign: 'center'}}>If you&apos;re from {country}, {salutation} 😊</h2><div> My new smart webpage with AI Resume Match feature is currently in development. Please check <a style={{color:'rgb(0 113 227)', textDecoration:'underline'}} href="https://my-profile-1ubas3rts-bryanronnie2712.vercel.app/">my old portfolio <div style={{height:'13px', width:'13px', display: 'inline-block'}}>{openInWindowSVG}</div></a> for the moment. </div></>
 
 
   return (
