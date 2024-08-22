@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({children}: Readonly<{children: React.ReactNode;}>) {
-  const API_Key = String(process.env.GA_ID)
+  const API_Key = String(process.env.NEXT_PUBLIC_GA_ID)
 
   return (
     <html lang="en">
