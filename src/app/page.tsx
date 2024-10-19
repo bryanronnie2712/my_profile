@@ -9,6 +9,8 @@ import TechStack from "./components/TechStack";
 import Projects from "./components/Projects";
 import Publications from "./components/Publications";
 import Footer from "./components/Footer";
+import ArtGallery from "./components/ArtGallery";
+// import NotificationBar from "./components/NotificationBar";
 
 const CustomPaper = styled(Paper)`
   background:white;
@@ -21,10 +23,12 @@ const CustomPaper = styled(Paper)`
 export default function Home() {
   return (
     <CustomPaper>
+      {/* <NotificationBar/> */}
       <NavBar/>
       <Banner/>
       <TechStack/>
       <Projects/>
+      <ArtGallery/>
       <Publications/>
       <Footer/>
       {/* <TechStack/>

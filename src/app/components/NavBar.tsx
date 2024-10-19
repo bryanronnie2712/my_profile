@@ -7,6 +7,7 @@ import { TransitionProps } from "@mui/material/transitions";
 import { useEffect, useState } from "react";
 import { runPrompt } from "../utils/gemini";
 import Image from "next/image";
+// import BryanLogo from '../favicon.png';
 const openInWindowSVG = <svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" mirror-in-rtl="true" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill="#494c4e" d="M12.1.6a.944.944 0 0 0 .2 1.04l1.352 1.353L10.28 6.37a.956.956 0 0 0 1.35 1.35l3.382-3.38 1.352 1.352a.944.944 0 0 0 1.04.2.958.958 0 0 0 .596-.875V.96a.964.964 0 0 0-.96-.96h-4.057a.958.958 0 0 0-.883.6z"></path> <path fill="#494c4e" d="M14 11v5a2.006 2.006 0 0 1-2 2H2a2.006 2.006 0 0 1-2-2V6a2.006 2.006 0 0 1 2-2h5a1 1 0 0 1 0 2H2v10h10v-5a1 1 0 0 1 2 0z"></path> </g></svg>
 
 const CustomNav = styled(AppBar)`
@@ -226,6 +227,7 @@ export default function NavBar() {
     <Box sx={{ flexGrow: 1 }}>
       <CustomNav position="fixed">
         <Toolbar>
+          {/* <Image height={70} src={BryanLogo} alt={""}  /> */}
           <Typography
             color={"transparent"}
             style={{
@@ -239,13 +241,15 @@ export default function NavBar() {
           >
             My Portfolio
           </Typography>
+
+          <p style={{marginRight: '20px'}}>*This website is under construction & will be fully functional by Nov 16</p>
           <GeminiButton>
             <GeminiSVG>✨ AI Match</GeminiSVG>
           </GeminiButton>
           <IButton
             onClick={(e) => {
               window.open(
-                "https://docs.google.com/document/d/1bLGow8idfwPsCxWOB-Lc-dZcjdHdEHzqMfZ5b1Eb1uw/edit?usp=sharing"
+                "https://drive.google.com/file/d/1decjwZYo2XrybCoOZ7h21r8qHcj57_ey/view?usp=sharing"
               );
             }}
             variant="contained"

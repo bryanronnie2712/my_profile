@@ -6,7 +6,7 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Ronnie's Portfolio",
+  title: "Bryan's Portfolio",
   description: "Built with NextJS & Material UI",
 };
 

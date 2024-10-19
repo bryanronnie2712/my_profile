@@ -50,12 +50,12 @@ const cards:Card[] = [
   }
 ]
 
-export default function Projects() {
+export default function ArtGallery() {
   return (
     <IContainer sx={{ flexGrow: 1 }}>
-      <BannerText>Projects</BannerText>
+      <BannerText>Art Gallery</BannerText>
       <CardsDiv>
-        <CardsWrapper className="cards-wrapper">
+        {/* <CardsWrapper className="cards-wrapper">
           {cards.map((card: Card, i: number) =>
             <div key={"card-grid-space" + i} className="card-grid-space">
               <a className="card" href="HTML/MyFirstWebPage.html" style={{ background: card.bgColor }}>
@@ -65,15 +65,15 @@ export default function Projects() {
 
                   <div className="tags">
                     {card.tags.map((tag: Tag, i: number) =>
-                      <div key={"tag" + i} style={{ backgroundImage: `url('music.jpg')` }} className="tag">{tag.text}</div>
+                      <div key={"tag" + i} style={{ background: tag.color }} className="tag">{tag.text}</div>
                     )}
                   </div>
                 </div>
               </a>
             </div>
-
           )}
-        </CardsWrapper>
+        </CardsWrapper> */}
+        Temporarily, please check my works here: <a href='https://fineartamerica.com/profiles/bryan-ronnie'>https://fineartamerica.com/profiles/bryan-ronnie</a>
       </CardsDiv>
     </IContainer>
   );
@@ -232,6 +232,8 @@ const CardsDiv = styled(Container)`
   // box-sizing: border-box;
   // justify-content: center;
   // flex-direction: column;
+  text-align: center;
+  padding:0;
 `;
 
 const BannerText = styled.h1`
