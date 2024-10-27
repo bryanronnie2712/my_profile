@@ -4,7 +4,6 @@ import * as React from 'react';
 import { AppBar, Container, ImageList, ImageListItem } from '@mui/material';
 import styled from 'styled-components';
 import { Box } from '@mui/system';
-import "./projects.css";
 
 interface Card {
   title: string,

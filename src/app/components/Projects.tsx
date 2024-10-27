@@ -4,7 +4,29 @@ import * as React from 'react';
 import { AppBar, Container, ImageList, ImageListItem } from '@mui/material';
 import styled from 'styled-components';
 import { Box } from '@mui/system';
-import "./projects.css";
+
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+
+const responsive = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 5
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 3
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1
+  }
+};
 
 interface Card {
   title: string,
@@ -54,8 +76,8 @@ export default function Projects() {
   return (
     <IContainer sx={{ flexGrow: 1 }}>
       <BannerText>Projects</BannerText>
-      <CardsDiv>
-        <CardsWrapper className="cards-wrapper">
+      <CardsDiv >
+        {/* <CardsWrapper className="cards-wrapper">
           {cards.map((card: Card, i: number) =>
             <div key={"card-grid-space" + i} className="card-grid-space">
               <a className="card" href="HTML/MyFirstWebPage.html" style={{ background: card.bgColor }}>
@@ -73,7 +95,46 @@ export default function Projects() {
             </div>
 
           )}
-        </CardsWrapper>
+        </CardsWrapper> */}
+
+<Carousel responsive={responsive}>
+{cards.map((card: Card, i: number) =>
+            <div style={{height:'500px', margin: "0 10px"}} key={"card-grid-space" + i} className="card-grid-space">
+              <Card1 className="card" href="HTML/MyFirstWebPage.html" style={{ background: card.bgColor }}>
+                <div>
+                  <h1>{card.title}</h1>
+                  <p>{card.description}</p>
+
+                  <div className="tags">
+                    {card.tags.map((tag: Tag, i: number) =>
+                      <div key={"tag" + i} style={{ backgroundImage: `url('music.jpg')` }} className="tag">{tag.text}</div>
+                    )}
+                  </div>
+                </div>
+              </Card1>
+            </div>
+
+          )}
+
+{cards.map((card: Card, i: number) =>
+            <div style={{height:'500px', margin: "0 10px"}} key={"card-grid-space" + i} className="card-grid-space">
+              <Card1 className="card" href="HTML/MyFirstWebPage.html" style={{ background: card.bgColor }}>
+                <div>
+                  <h1>{card.title}</h1>
+                  <p>{card.description}</p>
+
+                  <div className="tags">
+                    {card.tags.map((tag: Tag, i: number) =>
+                      <div key={"tag" + i} style={{ backgroundImage: `url('music.jpg')` }} className="tag">{tag.text}</div>
+                    )}
+                  </div>
+                </div>
+              </Card1>
+            </div>
+
+          )}
+</Carousel>
+
       </CardsDiv>
     </IContainer>
   );
@@ -92,11 +153,10 @@ export const CardsWrapper = styled.section`
 `;
 
 export const Card1 = styled.a`
-  font-family: 'Heebo';
   --bg-filter-opacity: 0.5;
   background-image: linear-gradient(rgba(0,0,0,var(--bg-filter-opacity)),rgba(0,0,0,var(--bg-filter-opacity))), var(--bg-img);
   height: 20em;
-  width: 15em;
+  column-gap:10px;
   font-size: 1.5em;
   color: white;
   border-radius: 1em;
@@ -146,10 +206,10 @@ export const Card1 = styled.a`
     margin-bottom: 0.5em;
   }
 
-  &:hover .tags .tag {
-    background: var(--color);
-    color: white;
-  }
+  // &:hover .tags .tag {
+  //   background: var(--color);
+  //   color: white;
+  // }
 
   .date {
     position: absolute;
@@ -186,13 +246,13 @@ export const Card1 = styled.a`
     height: 200%;
   }
 
-  &:hover {
-    color: var(--color);
-  }
+  // &:hover {
+  //   color: var(--color);
+  // }
 
-  &:hover:before, &:hover:after {
-    transform: scale(1);
-  }
+  // &:hover:before, &:hover:after {
+  //   transform: scale(1);
+  // }
 `;
 
 export const Info = styled.div`
