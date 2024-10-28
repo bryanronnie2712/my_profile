@@ -223,12 +223,12 @@ export default function NavBar() {
   const Message = <><h2 style={{textAlign: 'center'}}>If you&apos;re from {country}, {salutation} 😊</h2><div> My new smart webpage with AI Resume Match feature is currently in development. Please check <a style={{color:'rgb(0 113 227)', textDecoration:'underline'}} href="https://my-profile-1ubas3rts-bryanronnie2712.vercel.app/">my old portfolio <div style={{height:'13px', width:'13px', display: 'inline-block'}}>{openInWindowSVG}</div></a> for the moment. </div></>
 
   //////////////////////////////////////////// TO DO
-  const [resumeMatchDetails, setResumeMatchDetails] = useState("");
+  //const [resumeMatchDetails, setResumeMatchDetails] = useState("");
 
-  const matchResumePrompt = async () => {
-    const llmResponse = await runPrompt("Give a short salutation for the provided country. Take the local time of the capital city into consideration. No explanation needed, give purely the salutation preferably with local language. COUNTRY:" + languageData[0].name.common)
-    setResumeMatchDetails(llmResponse);
-  }
+  //const matchResumePrompt = async () => {
+    //const llmResponse = await runPrompt("Give a short salutation for the provided country. Take the local time of the capital city into consideration. No explanation needed, give purely the salutation preferably with local language. COUNTRY:" + languageData[0].name.common)
+    //setResumeMatchDetails(llmResponse);
+  //}
   ///////////////////////////////////////////
   return (
     <Box sx={{ flexGrow: 1 }}>
