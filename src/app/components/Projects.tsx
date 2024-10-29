@@ -62,6 +62,7 @@ const cards: Card[] = [
   },
   {
     title: "Instagram clone",
+ 
     description: "Let's go social this time!",
     bgColor: "red",
     tags: [
@@ -79,7 +80,7 @@ export default function Projects() {
       <CardsDiv>
         <Carousel showDots responsive={responsive}>
           {cards.map((card: Card, i: number) => (
-            <Card href="HTML/MyFirstWebPage.html">
+            <Card key={"card"+i} href="HTML/MyFirstWebPage.html">
               <div style={{ height: 240, background: "red", width: "100%" }}>
                 <Image
                   style={{ width: "100%", height: "100%" }}
