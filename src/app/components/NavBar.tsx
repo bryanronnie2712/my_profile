@@ -7,6 +7,7 @@ import { TransitionProps } from "@mui/material/transitions";
 import { useEffect, useState } from "react";
 import { runPrompt } from "../utils/gemini";
 import Image from "next/image";
+import { CloseIcon } from "../assets";
 // import BryanLogo from '../favicon.png';
 const openInWindowSVG = (
   <svg
@@ -169,48 +170,34 @@ const GeminiButton = styled.div`
 
 const NotificationBar = styled(Toolbar)<{ display: string }>`
   width: 100%;
-  background: #001122;
   justify-content: center;
-  font-size: 1em;
-  min-height: ${({ display }) => (display === "true" ? `40px` : `0px`)};
+  min-height: ${({ display }) => (display === "true" ? `fit-content` : `0px`)};
   height: ${({ display }) => (display === "true" ? `40px` : `0px`)};
   opacity: ${({ display }) => (display === "true" ? `1` : `0`)};
+  padding: 5px 0 5px 10px;
   transition: 0.4s all;
+  font-size: 16px;
+
+  @media (max-width: 1200px) {
+      font-size: 15px;
+  }
+  
+  @media (max-width: 768px) {
+      font-size: 14px;
+  }
+  
+  @media (max-width: 480px) {
+      font-size: 13px;
+  }
 `;
 
 const GeminiSVG = styled.div``;
 
-function SlideTransition(props: SlideProps) {
-  return <Slide {...props} direction="up" />;
-}
-
 export default function NavBar() {
   const API_Key = String(process.env.NEXT_PUBLIC_API_KEY_2);
 
-  const [state, setState] = useState<{
-    open: boolean;
-    Transition: React.ComponentType<
-      TransitionProps & {
-        children: React.ReactElement<any, any>;
-      }
-    >;
-  }>({
-    open: false,
-    Transition: SlideTransition,
-  });
-
-  const handleClose = () => {
-    setState({
-      ...state,
-      open: false,
-    });
-  };
-
   const handleOpen = () => {
-    setState({
-      ...state,
-      open: true,
-    });
+    setDisplayNotification(true);
   };
 
   const [country, setCountry] = useState("");
@@ -242,13 +229,12 @@ export default function NavBar() {
         setLanguage(popularLanguage);
 
         const llmResponse = await runPrompt(
-          "Give a short salutation for the provided country. Take the local time of the capital city into consideration. No explanation needed, give purely the salutation preferably with local language. COUNTRY:" +
+          "Give a short salutation for the provided country. Take the local time of the capital city into consideration. No explanation needed, give purely the salutation preferably with local language. If no language, use default country = Earth, language = English. User-Given COUNTRY:" +
             languageData[0].name.common
         );
 
         if (llmResponse) {
           setSalutation(llmResponse);
-          setDisplayNotification(true);
         }
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -261,25 +247,18 @@ export default function NavBar() {
   }, []);
 
   const Message = (
-    <div style={{ textAlign: "center" }}>
-      If you&apos;re from {country}, {salutation}! 😊 My new smart webpage with
-      AI Resume Match feature is currently in development. Please check{" "}
+    <div>
+      If you&apos;re from {country}, {salutation}! My new site will be ready by
+      Nov 16. For now, please check{" "}
       <a
-        style={{ color: "rgb(0 113 227)", textDecoration: "underline" }}
+        style={{ color: "rgb(24 0 227)", textDecoration: "underline" }}
         href="https://my-profile-1ubas3rts-bryanronnie2712.vercel.app/"
       >
         my old portfolio{" "}
         <div style={{ height: "1em", width: "1em", display: "inline-block" }}>
           {openInWindowSVG}
         </div>
-      </a>{" "}
-      for the moment.
-      <div
-        onClick={() => setDisplayNotification(false)}
-        style={{ height: "1em", width: "1em", display: "inline-block" }}
-      >
-        X
-      </div>
+      </a>
     </div>
   );
 
@@ -294,10 +273,36 @@ export default function NavBar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <CustomNav position="fixed">
-          <NotificationBar display={(salutation!=="" && displayNotification).toString()}>
-            {Message}
-          </NotificationBar>
-        
+        {salutation !== "" && (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              background: "#00B74A",
+              fontWeight: "500",
+              textAlign: "center",
+            }}
+          >
+            <NotificationBar
+              display={(salutation !== "" && displayNotification).toString()}
+            >
+              {Message}
+            </NotificationBar>{" "}
+            {displayNotification && (
+              <div
+                onClick={() => setDisplayNotification(false)}
+                style={{
+                  display: "inline-block",
+                  cursor: "pointer",
+                  marginRight: 10,
+                }}
+              >
+                <Image src={CloseIcon} height="17" width="17" alt={""} />
+              </div>
+            )}
+          </div>
+        )}
+
         <Toolbar>
           <Typography
             color={"transparent"}

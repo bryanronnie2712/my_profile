@@ -6,5 +6,5 @@ import LinkedInLogo from "./logo-linkedin-icon.png";
 import XingLogo from "./xing-logo.png";
 import PhoneLogo from "./phone-icon.png";
 import GeminiIcon from './google-gemini-icon.svg';
-
-export {SpringerBook, LinkedInLogo, XingLogo, PhoneLogo, GeminiIcon, SmallLogo, Covid};
+import CloseIcon from './close.png';
+export {SpringerBook, LinkedInLogo, XingLogo, PhoneLogo, GeminiIcon, SmallLogo, Covid, CloseIcon};
