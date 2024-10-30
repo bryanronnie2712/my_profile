@@ -28,7 +28,7 @@ export default function Footer() {
 
         <div>
           <p style={{textAlign:'center'}}>
-          What is your greatest challenge that I can help you with? Drop me a mail at <a style={{textDecoration:'underline'}} href = "mailto: bryanronnie2000@gmail.com">bryanronnie2000@gmail.com</a> or reach me at:
+          What is your greatest challenge that I can help you with? Drop me a mail at <a style={{textDecoration:'underline'}} href = "mailto: bryanronniej@gmail.com">bryanronniej@gmail.com</a> or reach me at:
           </p>
             
         <div style={{display:'flex', justifyContent:'center' ,margin:'40px 0 0 0'}}>

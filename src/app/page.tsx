@@ -11,10 +11,10 @@ import Publications from "./components/Publications";
 import Footer from "./components/Footer";
 import ArtGallery from "./components/ArtGallery";
 // import NotificationBar from "./components/NotificationBar";
+// import NotificationBar from "./components/NotificationBar";
 
 const CustomPaper = styled(Paper)`
   background:white;
-  // min-height: 100vh;
   height: 100%;
   width: 100%;
   padding:0;
@@ -31,15 +31,6 @@ export default function Home() {
       <ArtGallery/>
       <Publications/>
       <Footer/>
-      {/* <TechStack/>
-      <TechStack/>
-      <TechStack/>
-      <TechStack/>
-      <TechStack/>
-      <TechStack/>
-      <TechStack/>
-      <TechStack/> */}
-      
     </CustomPaper>
   );
 }
