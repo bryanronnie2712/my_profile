@@ -4,10 +4,10 @@ import * as React from "react";
 import { AppBar, Container, ImageList, ImageListItem } from "@mui/material";
 import styled from "styled-components";
 import { Box } from "@mui/system";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { Covid, LinkedInLogo } from "../assets";
+import { Covid, Instagram, LinkedInLogo, TextEditorImg } from "../assets";
 
 const responsive = {
   superLargeDesktop: {
@@ -33,6 +33,8 @@ interface Card {
   description: string;
   bgColor: string;
   tags: Tag[];
+  image: StaticImageData;
+  url: string;
 }
 
 interface Tag {
@@ -42,9 +44,10 @@ interface Tag {
 
 const cards: Card[] = [
   {
-    title: "My First Web Project",
+    title: "Covid Tracker",
     description:
-      "My First College Web Project: webpage promo for a local gaming shop",
+      "Daily Covid cases and deaths with chrome extension",
+    image:Covid,
     bgColor: "blue",
     tags: [
       { text: "AngularJS", color: "brown" },
@@ -52,16 +55,19 @@ const cards: Card[] = [
       { text: "CSS", color: "#1572b7" },
       { text: "Javascript", color: "#f19f0b" },
     ],
+    url: "https://www.linkedin.com/in/bryan-ronnie",
   },
   {
     title: "Text Editor",
     description: "A simple text editor with mostly used features.",
+    image:TextEditorImg,
     bgColor: "brown",
     tags: [{ text: "AngularJS", color: "brown" }],
+    url: "https://www.linkedin.com/in/bryan-ronnie",
   },
   {
     title: "Instagram clone",
- 
+    image:Instagram,
     description: "Let's go social this time!",
     bgColor: "red",
     tags: [
@@ -69,6 +75,7 @@ const cards: Card[] = [
       { text: "NodeJS", color: "green" },
       { text: "Firebase", color: "orange" },
     ],
+    url: "https://www.linkedin.com/in/bryan-ronnie",
   },
 ];
 
@@ -82,11 +89,11 @@ export default function Projects() {
             <Card key={"card"+i} href="HTML/MyFirstWebPage.html">
               <div style={{ height: 240, background: "red", width: "100%" }}>
                 <Image
-                  style={{ width: "100%", height: "100%" }}
+                  style={{ width: "100%", height: "100%",objectFit: "cover" }}
                   onClick={(e) =>
-                    window.open("https://www.linkedin.com/in/bryan-ronnie")
+                    window.open(card.url)
                   }
-                  src={Covid}
+                  src={card.image}
                   alt={""}
                 />
               </div>

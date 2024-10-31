@@ -174,7 +174,7 @@ const NotificationBar = styled(Toolbar)<{ display: string }>`
   min-height: ${({ display }) => (display === "true" ? `fit-content` : `0px`)};
   height: ${({ display }) => (display === "true" ? `40px` : `0px`)};
   opacity: ${({ display }) => (display === "true" ? `1` : `0`)};
-  padding: 5px 0 5px 10px;
+  padding: ${({ display }) => (display === "true" ? `5px 0 5px 10px` : `0`)};
   transition: 0.4s all;
   font-size: 16px;
 
@@ -189,6 +189,12 @@ const NotificationBar = styled(Toolbar)<{ display: string }>`
   @media (max-width: 480px) {
       font-size: 13px;
   }
+`;
+
+const URLString = styled.a`
+color: rgb(24, 0, 227);
+text-decoration: underline;
+text-shadow: 0px 0px 5px #d9d9d9;
 `;
 
 const GeminiSVG = styled.div``;
@@ -250,15 +256,14 @@ export default function NavBar() {
     <div>
       If you&apos;re from {country}, {salutation}! My new site will be ready by
       Nov 16. For now, please check{" "}
-      <a
-        style={{ color: "rgb(24 0 227)", textDecoration: "underline" }}
+      <URLString
         href="https://my-profile-1ubas3rts-bryanronnie2712.vercel.app/"
       >
         my old portfolio{" "}
         <div style={{ height: "1em", width: "1em", display: "inline-block" }}>
           {openInWindowSVG}
         </div>
-      </a>
+      </URLString>
     </div>
   );
 
