@@ -7,7 +7,7 @@ import { Box } from "@mui/system";
 import Image, { StaticImageData } from "next/image";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { Covid, Instagram, LinkedInLogo, TextEditorImg } from "../assets";
+import { Covid, Instagram, LinkedInLogo, MusicImage, TextEditorImg, VideoConferencing } from "../assets";
 
 const responsive = {
   superLargeDesktop: {
@@ -43,6 +43,30 @@ interface Tag {
 }
 
 const cards: Card[] = [
+  {
+    title: "BryMeet",
+    description:
+      "Web conferencing with screen-sharing built using webRTC",
+    image: VideoConferencing,
+    bgColor: "blue",
+    tags: [
+      { text: "ReactJS", color: "cyan" },
+      { text: "NodeJS", color: "green" },
+    ],
+    url: "https://www.linkedin.com/in/bryan-ronnie",
+  },
+  {
+    title: "Songs Entropy",
+    description:
+      "Research project - FastAPI",
+    image: MusicImage,
+    bgColor: "blue",
+    tags: [
+      { text: "ReactJS", color: "cyan" },
+      { text: "NodeJS", color: "green" },
+    ],
+    url: "https://www.linkedin.com/in/bryan-ronnie",
+  },
   {
     title: "Covid Tracker",
     description:
@@ -86,7 +110,7 @@ export default function Projects() {
       <CardsDiv>
         <Carousel showDots responsive={responsive}>
           {cards.map((card: Card, i: number) => (
-            <Card key={"card"+i} href="HTML/MyFirstWebPage.html">
+            <Card key={"card"+i}>
               <div style={{ height: 240, background: "red", width: "100%" }}>
                 <Image
                   style={{ width: "100%", height: "100%",objectFit: "cover" }}
@@ -244,12 +268,6 @@ const IContainer = styled(Container)`
 `;
 
 const CardsDiv = styled(Container)`
-  // display: flex;
-  // flex-wrap: wrap;
-  // gap: 10px;
-  // box-sizing: border-box;
-  // justify-content: center;
-  // flex-direction: column;
 `;
 
 const BannerText = styled.h1`
@@ -258,8 +276,3 @@ const BannerText = styled.h1`
   font-size: 2.5rem;
   margin: 30px 0;
 `;
-
-interface StyleProps {
-  bgColor?: string;
-  color?: string;
-}

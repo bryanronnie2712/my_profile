@@ -1,4 +1,4 @@
-import { GCPLogo, GraphQLLogo, JavaLogo, NodeJsLogo, PostgreSQLLogo, ReactLogo, SpringLogo } from "../assets";
+import { GCPLogo, GraphQLLogo, JavaLogo, NextJSLogo, NodeJsLogo, PostgreSQLLogo, ReactLogo, SpringLogo } from "../assets";
 
 export const techstackCardValues = [[{
     color: "cornflowerblue",
@@ -105,7 +105,7 @@ export const techIcons = [{
 {
     type: "frontend",
     name: "css",
-    src: ReactLogo
+    src: NextJSLogo
 },
 {
     type: "frontend",

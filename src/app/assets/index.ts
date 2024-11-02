@@ -16,5 +16,8 @@ import GraphQLLogo from './tech-icons/graphql.png'
 import ReactLogo from './tech-icons/react.png';
 import PostgreSQLLogo from './tech-icons/postgresql.png';
 import GCPLogo from './tech-icons/gcp.png';
+import NextJSLogo from './tech-icons/nextjs.png';
+import VideoConferencing from './video-conf.jpg';
+import MusicImage from './musical-instruments.jpg'
 
-export {SpringerBook,PostgreSQLLogo,GCPLogo,ReactLogo,TextEditorImg, LinkedInLogo, XingLogo, PhoneLogo, GeminiIcon, SmallLogo, Covid, CloseIcon, Instagram, JavaLogo, SpringLogo, NodeJsLogo, GraphQLLogo};
+export {MusicImage, SpringerBook,VideoConferencing,PostgreSQLLogo,GCPLogo,ReactLogo, NextJSLogo, TextEditorImg, LinkedInLogo, XingLogo, PhoneLogo, GeminiIcon, SmallLogo, Covid, CloseIcon, Instagram, JavaLogo, SpringLogo, NodeJsLogo, GraphQLLogo};
