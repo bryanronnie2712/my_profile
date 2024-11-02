@@ -300,28 +300,16 @@ export default function NavBar() {
     Reference Documents:
 
     Statement of Purpose
-
       The rapid evolution of technology particularly in Software and Artificial Intelligence is transforming industries worldwide. Telecommunications, an essential backbone of global connectivity has seen remarkable advancements through AI from automating customer support to enabling predictive network analysis and self-healing systems. My professional journey has ignited a passion for leveraging these emerging technologies to create solutions that matter. To achieve my aspirations, the MEng program at UBC’s ECE department is my ideal choice because of its interdisciplinary curriculum, which will provide a comprehensive view of computer engineering, networking, and AI/ML. By combining these domains, I aim to innovate in processes across diverse industries using AI, particularly within telecommunications, where my background can have a meaningful impact.
-
       My early interest in technology began in school, where I was introduced to programming through languages like QBasic and C++. This early enthusiasm guided me to pursue a degree in Information Technology at Siva Subramaniya Nadar College of Engineering where I deepened my understanding of computing systems and their real-world applications. These foundational experiences shaped my professional career as a Fullstack Developer at Verizon Communications. Here, I furthered my knowledge of telecom software and developed a fascination with how cutting-edge technologies like generative AI are reshaping the industry.
-
       In addition to my industry experience, I have pursued research in interdisciplinary applications of computing. As an avid music and language lover, I applied my interest in computing to the field of music classification and published a conference paper titled “Exploring the Role of Entropy in Music Classification” in the Springer CCIS book series with my professor Dr. R. Srinivasan. Through this work, I developed strong analytical skills and a problem-solving mindset which I believe will be assets as I navigate the challenging application-oriented curriculum of UBC’s MEng program.
-
       At Verizon, I have contributed to multiple projects, including proofs of concept that have been integrated into enterprise applications. I developed real-time analytics tools and a Gen AI-powered BigQuery aider tool. Currently, I am working on an AI-driven app tour that guides users through steps based on their requests, utilizing natural language processing to enhance user experience. Additionally, I am personally exploring Gen AI's potential by developing an application centred on AI resumé-matching, a prototype of which can be found on my portfolio website. I am excited by the prospect of leveraging these emerging technologies to build innovative products, and I firmly believe that advanced academic training will allow me to realize this vision.
-
       My experience at Verizon AI & D has exposed me to the intricate dynamics of telecommunications, where I have worked closely with AI, cloud, and data engineering teams. My ability to quickly adapt to new challenges and contribute to key projects led to my promotion to Fullstack Engineer II within 1.5 years as a recognition of my dedication and technical growth at Verizon. Having worked here for around three years has solidified my desire to pursue specialization in this domain. I am particularly fascinated by the integration of generative AI in network operations and its potential to transform the telecommunications industry.
-
       While my brother and I often compete academically, he is pursuing an M.Eng in ECE with a focus on electronics while my own passion lies more in the computer engineering aspects of ECE. I am eager to carve out my path by focusing on technologies that combine AI/ML and software to solve real-world problems. I believe that the MEng program at your institution will provide the perfect platform for me to build on my foundation and push the boundaries of innovation.
-
       The University of British Columbia is my preferred choice for a master’s program due to its exceptional research facilities and incubation centers like the Robson Square Hub that foster innovation and entrepreneurship. The university’s dedication to advancing the fields of software and AI/ML aligns with my aspirations. I am particularly interested in engaging with research labs like the Software Analysis and Test Lab (SALT), where I hope to deepen my knowledge of software engineering and its applications. I am also eager to connect with new people through the Electrical and Computer Engineering Graduate Student Association (ECEGSA) to brainstorm innovative solutions to complex industry challenges.
-
       By the time I join the MEng program, I will have 3.8 years of industry experience spanning AI, software development, and cloud technologies. My professional roles have equipped me with the skills to lead projects, develop innovative solutions, and apply AI in real-world scenarios, particularly in telecommunications and e-commerce. In four years, I envision applying the skills acquired at UBC to become a senior resource in the software development industry specializing in AI-driven solutions like user experience enhancement. I am confident that the MEng program at UBC will enable me to achieve my goals and make meaningful contributions to the field. I look forward to the opportunity to join UBC’s vibrant academic community and contribute to its pioneering research in AI and telecommunications.
-
       Thank you for considering my application.
-
       Bryan Ronnie J
-
-
 
       QUESTION: ${query}
     `)
@@ -341,11 +329,11 @@ export default function NavBar() {
     minHeight: "min-content",
     boxShadow: "none",
     borderRadius: 2,
-
     border: "none",
     borderBottom: "2px solid rgba(80, 80, 80, 0.4)",
     background: "linear-gradient(135deg, #ffffffcc, #ffffffbf, #ebe5ee)",
     backdropFilter: "saturate(25%) blur(7px)",
+    transition: "height 0.5s"
   };
 
   const [JD, setJD] = useState("");
@@ -398,8 +386,8 @@ export default function NavBar() {
           >
             My Portfolio
           </Typography>
-          <GeminiButton>
-            <GeminiSVG onClick={() => {setOpenGeminiModal(true); setModalInnerAnimation("appear");}}>
+          <GeminiButton onClick={() => {setOpenGeminiModal(true); setModalInnerAnimation("appear");}}>
+            <GeminiSVG>
               ✨ AI Match
             </GeminiSVG>
           </GeminiButton>
@@ -454,6 +442,26 @@ export default function NavBar() {
                   />
                 </QuestionDiv>
 
+                <AnswerDiv $animation = {modalInnerAnimation}>
+                  Enter your question or Copy/Paste JD:
+                  <TextareaAutosize
+                    minRows={4}
+                    maxRows={4}
+                    style={{
+                      background: "white",
+                      color: "black",
+                      fontFamily: "Inter",
+                      fontSize: "16px",
+                      width: "100%",
+                      marginTop: "5px",
+                      padding: "10px",
+                      maxWidth:"100%",
+                    }}
+                    value={resumeMatchDetails}
+                    disabled
+                  />
+                </AnswerDiv>
+
                 <div
                   style={{
                     color: "black",
@@ -469,7 +477,7 @@ export default function NavBar() {
                       // move to next slide
                       // loading
                       // gemini API call
-                      // matchResumePrompt(JD);
+                      matchResumePrompt(JD);
                       setModalInnerAnimation("fadeOut");
                       // Results
                     }}
@@ -518,6 +526,24 @@ const QuestionDiv = styled.div<{ $animation: string }>`
   `}
 `;
 
+
+const AnswerDiv = styled.div<{ $animation: string }>`
+  color: black;
+  margin-top: 30px;
+  font-weight: 600;
+  padding: 0 20px;
+  transition: all 0.7s;
+
+  ${({ $animation }) => $animation === "fadeIn" ? `
+    opacity: 1;
+    transform: translate(0px, 0px);
+  ` : $animation === "fadeOut" ? `
+    opacity: 0;
+    transform: translate(50px, 0px);
+  ` : `
+    opacity: 1;
+  `}
+`;
 
 const ModalHeader = styled.div`
   display: flex;

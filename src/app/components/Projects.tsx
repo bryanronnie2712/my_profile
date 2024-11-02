@@ -7,7 +7,14 @@ import { Box } from "@mui/system";
 import Image, { StaticImageData } from "next/image";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { Covid, Instagram, LinkedInLogo, MusicImage, TextEditorImg, VideoConferencing } from "../assets";
+import {
+  Covid,
+  Instagram,
+  LinkedInLogo,
+  MusicImage,
+  TextEditorImg,
+  VideoConferencing,
+} from "../assets";
 
 const responsive = {
   superLargeDesktop: {
@@ -45,8 +52,7 @@ interface Tag {
 const cards: Card[] = [
   {
     title: "BryMeet",
-    description:
-      "Web conferencing with screen-sharing built using webRTC",
+    description: "Web conferencing with screen-sharing built using webRTC",
     image: VideoConferencing,
     bgColor: "blue",
     tags: [
@@ -57,8 +63,7 @@ const cards: Card[] = [
   },
   {
     title: "Songs Entropy",
-    description:
-      "Research project - FastAPI",
+    description: "Research project - FastAPI",
     image: MusicImage,
     bgColor: "blue",
     tags: [
@@ -69,9 +74,8 @@ const cards: Card[] = [
   },
   {
     title: "Covid Tracker",
-    description:
-      "Daily Covid cases and deaths with chrome extension",
-    image:Covid,
+    description: "Daily Covid cases and deaths with chrome extension",
+    image: Covid,
     bgColor: "blue",
     tags: [
       { text: "AngularJS", color: "brown" },
@@ -84,14 +88,14 @@ const cards: Card[] = [
   {
     title: "Text Editor",
     description: "A simple text editor with mostly used features.",
-    image:TextEditorImg,
+    image: TextEditorImg,
     bgColor: "brown",
     tags: [{ text: "AngularJS", color: "brown" }],
     url: "https://www.linkedin.com/in/bryan-ronnie",
   },
   {
     title: "Instagram clone",
-    image:Instagram,
+    image: Instagram,
     description: "Let's go social this time!",
     bgColor: "red",
     tags: [
@@ -110,13 +114,11 @@ export default function Projects() {
       <CardsDiv>
         <Carousel showDots responsive={responsive}>
           {cards.map((card: Card, i: number) => (
-            <Card key={"card"+i}>
+            <Card key={"card" + i}>
               <div style={{ height: 240, background: "red", width: "100%" }}>
                 <Image
-                  style={{ width: "100%", height: "100%",objectFit: "cover" }}
-                  onClick={(e) =>
-                    window.open(card.url)
-                  }
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  onClick={(e) => window.open(card.url)}
                   src={card.image}
                   alt={""}
                 />
@@ -166,6 +168,7 @@ export const Card = styled.a`
   display: flex;
   flex-direction: column;
   position: relative;
+  margin-bottom: 30px;
   overflow: hidden;
 
   &:hover {
@@ -268,6 +271,12 @@ const IContainer = styled(Container)`
 `;
 
 const CardsDiv = styled(Container)`
+  @media (max-width: 600px) {
+    & {
+      padding: 0;
+      margin: 0;
+    }
+  }
 `;
 
 const BannerText = styled.h1`
