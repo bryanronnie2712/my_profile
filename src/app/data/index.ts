@@ -1,4 +1,4 @@
-import { techstackCardValues } from "./cardValues";
+// import { techstackCardValues } from "./cardValues";
 
 
-export {techstackCardValues}
+// export {techstackCardValues}
