@@ -18,7 +18,7 @@ import { TransitionProps } from "@mui/material/transitions";
 import { useEffect, useRef, useState } from "react";
 import { runPrompt } from "../utils/gemini";
 import Image from "next/image";
-import { CloseIcon, FullscreenIcon, SmallScreenIcon } from "../assets";
+import { BackArrow, CloseIcon, FullscreenIcon, SmallScreenIcon } from "../assets";
 import Carousel from "react-multi-carousel";
 // import BryanLogo from '../favicon.png';
 const openInWindowSVG = (
@@ -579,6 +579,8 @@ export default function NavBar() {
                           width: "100%",
                           marginTop: "10px",
                           padding: "10px",
+                          minHeight: !windowMode ? "70vh" : "auto",
+                          maxHeight: "70vh",
                           maxWidth: "100%",
                           borderRadius: "8px",
                         }}
@@ -594,14 +596,6 @@ export default function NavBar() {
                         flexDirection: "row-reverse",
                       }}
                     >
-                      {/* <IButton
-                        style={{ borderRadius: "30px", height: "30px" }}
-                        onClick={handleSubmit}
-                        variant="contained"
-                        color="inherit"
-                      >
-                        Submit
-                      </IButton> */}
                       <GeminiButton1 onClick={handleSubmit}>
                         <GeminiSVG>✨ Submit</GeminiSVG>
                       </GeminiButton1>
@@ -623,6 +617,7 @@ export default function NavBar() {
                           padding: "10px",
                           maxWidth: "100%",
                           minWidth: "100%",
+                          minHeight: !windowMode ? "70vh" : "auto",
                           maxHeight: "70vh",
                           borderRadius: "8px",
                         }}
@@ -640,7 +635,7 @@ export default function NavBar() {
                       }}
                     >
                       <IButton
-                        style={{ borderRadius: "30px", height: "30px" }}
+                        style={{ borderRadius: "30px", height: "30px", width:"100px", paddingLeft:"0px" }}
                         onClick={(e) => {
                           // move to next slide
                           // loading
@@ -653,7 +648,7 @@ export default function NavBar() {
                         variant="contained"
                         color="inherit"
                       >
-                        Go Back
+                        <Image src={BackArrow} alt="" width={10} style={{filter:"invert(1)", marginRight:"10px"}}></Image> Back
                       </IButton>
                     </div>
                   </div>
