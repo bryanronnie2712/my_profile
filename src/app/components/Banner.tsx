@@ -22,7 +22,6 @@ const IContainer = styled(Container)`
     }
   }
 
-
   .wave,
   .wave::before,
   .wave::after {
@@ -88,8 +87,8 @@ const IContainer = styled(Container)`
 const BannerText = styled.h1`
   text-align: center;
   font-size: 3.7em;
-  margin: 0; /* Ensure no extra margins */
-  box-sizing: border-box; /* Ensure padding doesn't affect layout */
+  margin: 0; 
+  box-sizing: border-box;
   background: linear-gradient(360deg, #4f4f4f, #ffffff, white) text;
   color: transparent;
   animation: text-appear 0.6s ease-in-out;
@@ -117,11 +116,7 @@ const BannerText = styled.h1`
       font-size: 1.6em;
     }
   }
-  
-
 `;
-
-
 
 export default function Banner() {
   return (<>

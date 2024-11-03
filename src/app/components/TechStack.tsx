@@ -8,7 +8,7 @@ import { useState } from "react";
 
 const IContainer = styled(Container)`
   width: 100%;
-  padding: 40px 10px;
+  padding: 20px 10px;
   background: white;
   max-width: 100%;
   align-items: center;
@@ -20,10 +20,9 @@ const BannerText = styled.h1`
   color: black;
   text-align: center;
   font-size: 2.5rem;
-  margin-bottom: 30px;
   @media (max-width: 600px) {
     & {
-      font-size: 1.7em;
+      font-size: 1.9em;
     }
   }
 `;
@@ -58,7 +57,7 @@ export default function TechStack() {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <BubbleChart data={filteredData} searchTerm={searchTerm} />
+      <BubbleChart data={filteredData} />
     </IContainer>
   );
 }
@@ -69,7 +68,7 @@ const SearchInput = styled.input`
   font-family: Inter;
   font-size: 16px;
   width: min(80vw, 400px);
-  margin: 20px;
+  margin: 20px 0 10px 0;
   padding: 10px;
   border-radius: 8px;
   border: 0;

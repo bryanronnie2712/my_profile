@@ -19,5 +19,8 @@ import GCPLogo from './tech-icons/gcp.png';
 import NextJSLogo from './tech-icons/nextjs.png';
 import VideoConferencing from './video-conf.jpg';
 import MusicImage from './musical-instruments.jpg'
+import FullscreenIcon from './fullscreen.png';
+import BackArrow from './back-arrow.png';
+import SmallScreenIcon from './smallscreen.png';
 
-export {MusicImage, SpringerBook,VideoConferencing,PostgreSQLLogo,GCPLogo,ReactLogo, NextJSLogo, TextEditorImg, LinkedInLogo, XingLogo, PhoneLogo, GeminiIcon, SmallLogo, Covid, CloseIcon, Instagram, JavaLogo, SpringLogo, NodeJsLogo, GraphQLLogo};
+export {MusicImage,SmallScreenIcon,FullscreenIcon,BackArrow,  SpringerBook,VideoConferencing,PostgreSQLLogo,GCPLogo,ReactLogo, NextJSLogo, TextEditorImg, LinkedInLogo, XingLogo, PhoneLogo, GeminiIcon, SmallLogo, Covid, CloseIcon, Instagram, JavaLogo, SpringLogo, NodeJsLogo, GraphQLLogo};

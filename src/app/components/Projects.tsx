@@ -16,7 +16,7 @@ import {
   VideoConferencing,
 } from "../assets";
 
-const responsive = {
+export const responsive = {
   superLargeDesktop: {
     breakpoint: { max: 4000, min: 3000 },
     items: 5,
@@ -259,7 +259,7 @@ export const Info = styled.div`
 
 const IContainer = styled(Container)`
   width: 100%;
-  padding: 30px;
+  padding: 20px;
   background: white;
   max-width: 100%;
 
@@ -283,5 +283,10 @@ const BannerText = styled.h1`
   color: black;
   text-align: center;
   font-size: 2.5rem;
+  @media (max-width: 600px) {
+    & {
+      font-size: 1.9em;
+    }
+  }
   margin: 30px 0;
 `;

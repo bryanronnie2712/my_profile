@@ -15,10 +15,11 @@ import styled from "styled-components";
 import Snackbar from "@mui/material/Snackbar";
 import Slide, { SlideProps } from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { runPrompt } from "../utils/gemini";
 import Image from "next/image";
-import { CloseIcon } from "../assets";
+import { CloseIcon, FullscreenIcon, SmallScreenIcon } from "../assets";
+import Carousel from "react-multi-carousel";
 // import BryanLogo from '../favicon.png';
 const openInWindowSVG = (
   <svg
@@ -179,6 +180,92 @@ const GeminiButton = styled.div`
   }
 `;
 
+const GeminiButton1 = styled.div`
+  @property --rotate {
+    syntax: "<angle>";
+    initial-value: 132deg;
+    inherits: false;
+  }
+    background: #191c29;
+    padding: 5px 4px;
+    position: relative;
+    border-radius: 30px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    cursor: pointer;
+    width: 110px;
+    color: white;
+    margin-right: 15px;
+    height:35px;
+  
+  &:hover {
+    color: rgb(88 199 250 / 100%);
+    transition: color 1s;
+  }
+  
+  &:hover:before, :hover:after {
+    animation: none;
+    opacity: 0;
+  }
+  
+  &::before {
+    content: "";
+    border-radius: 30px;
+    width: 103%;
+    height: 105%;
+    background-image: linear-gradient(var(--rotate),red, purple , gold, green);
+    position: absolute;
+    z-index: -1;
+    top: -2%;
+    left: -1%;
+    animation: spin1 5s linear infinite;
+  }
+  
+  &::after {
+    border-radius: 30px;
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    transform: scale(0.8);
+    filter: blur(calc(65vh) / 8));
+    background-image: linear-gradient(var(--rotate),#5ddcff, #3c67e3 43%, #4e00c2);
+    opacity: 1;
+    transition: opacity .5s;
+    animation: spin1 5s linear infinite;
+  }
+  
+  @keyframes spin1 {
+    0% {
+      --rotate: 0deg;
+    }
+    100% {
+      --rotate: 360deg;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    & {
+      width: 80px;
+      font-size: 12px;
+      margin-right: 7px;
+      height: 24px;
+    }
+
+    &::before {
+      height: 103%;
+      width: 102%;
+    }
+  }
+`;
+
 const NotificationBar = styled(Toolbar)<{ display: string }>`
   width: 100%;
   justify-content: center;
@@ -278,11 +365,16 @@ export default function NavBar() {
   );
 
   ////////////////////////////////////////// TO DO
-  const [resumeMatchDetails, setResumeMatchDetails] = useState("");
+  const [resumeMatchDetails, setResumeMatchDetails] = useState<{
+    answer?: string;
+  }>({});
 
   const matchResumePrompt = async (query: string) => {
     const llmResponse = await runPrompt(`
     Refer my information as a resume, biography, etc & answer the questions in the first-person. 
+    Always the first character of the answer should be "{" and last be "}"
+
+
     There are two question types:
     1) Resume Match -
       Question format: They give you a job description or role name/ functions. Refer the reference documents and answer
@@ -296,6 +388,7 @@ export default function NavBar() {
       Answer format: give the answer as a string in pure JSON. eg: {"answer": "Helloworld"}
       Answer example: {"answer": "My brother is pursuing MEng ECE with a focus in electronics"}
 
+    If the question does not match either format, respond with {"answer" : "Please provide a question/Job description"}
 
     Reference Documents:
 
@@ -312,32 +405,61 @@ export default function NavBar() {
       Bryan Ronnie J
 
       QUESTION: ${query}
-    `)
-    setResumeMatchDetails(llmResponse);
-    console.log("resumeMatchDetails", llmResponse)
-  }
+    `);
 
-  
+    // Extract the JSON-like content within the curly braces
+    const extracted = llmResponse.match(/\{.*\}/)?.[0] || "";
+    console.log("resumeMatchDetails", extracted);
+    setResumeMatchDetails(JSON.parse(extracted));
+  };
+
   /////////////////////////////////////////
+
+  const [JD, setJD] = useState("");
+  const [modalInnerAnimation, setModalInnerAnimation] = useState("appear");
+  const [windowMode, setWindowMode] = useState(1);
 
   const style = {
     position: "absolute",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: "min(600px, 90vw)",
-    minHeight: "min-content",
+    width: windowMode ? "min(600px, 90vw)" : "100vw",
+    minHeight: windowMode ? "min-content" : "100vh",
     boxShadow: "none",
     borderRadius: 2,
     border: "none",
     borderBottom: "2px solid rgba(80, 80, 80, 0.4)",
-    background: "linear-gradient(135deg, #ffffffcc, #ffffffbf, #ebe5ee)",
+    // background: "linear-gradient(135deg, #ffffffcc, #ffffffbf, #ebe5ee)",
+    background: "repeating-linear-gradient(315deg, #000000e3, #434343)",
     backdropFilter: "saturate(25%) blur(7px)",
-    transition: "height 0.5s"
+    transition: "height 0.5s",
+    outline: 0,
   };
 
-  const [JD, setJD] = useState("");
-  const [modalInnerAnimation, setModalInnerAnimation] = useState("appear");
+  const carouselRef: any = useRef();
+
+  const handleSubmit = () => {
+    // Call your matchResumePrompt function here
+    matchResumePrompt(JD);
+
+    // Move to the next slide
+    carouselRef.current.next();
+
+    // Set your modal animation if needed
+    setModalInnerAnimation("fadeOut");
+  };
+
+  const handleGoBack = () => {
+    // Call your matchResumePrompt function here
+    // matchResumePrompt(JD);
+
+    // Move to the next slide
+    carouselRef.current.previous();
+
+    // Set your modal animation if needed
+    setModalInnerAnimation("fadeOut");
+  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -386,10 +508,13 @@ export default function NavBar() {
           >
             My Portfolio
           </Typography>
-          <GeminiButton onClick={() => {setOpenGeminiModal(true); setModalInnerAnimation("appear");}}>
-            <GeminiSVG>
-              ✨ AI Match
-            </GeminiSVG>
+          <GeminiButton
+            onClick={() => {
+              setOpenGeminiModal(true);
+              setModalInnerAnimation("appear");
+            }}
+          >
+            <GeminiSVG>✨ AI Match</GeminiSVG>
           </GeminiButton>
 
           <Modal
@@ -407,86 +532,132 @@ export default function NavBar() {
           >
             <Fade in={openGeminiModal}>
               <Box sx={style}>
-                <ModalHeader>
-                  <Typography
-                    style={{ color: "black", fontWeight: 800 }}
-                    id="transition-modal-title"
-                    variant="h4"
-                    component="h3"
-                  >
+                <ModalHeader $windowMode={windowMode}>
+                  <ModalTitle id="transition-modal-title" variant="h4">
                     AI Match
-                  </Typography>
+                  </ModalTitle>
                   <CloseIconDiv onClick={() => setOpenGeminiModal(false)}>
-                    <Image width={20} src={CloseIcon} alt="" />
+                    <Image
+                      style={{ filter: "invert(1)" }}
+                      width={20}
+                      src={CloseIcon}
+                      alt=""
+                    />
                   </CloseIconDiv>
+
+                  <FullscreenIconDiv>
+                    <Image
+                      style={{ filter: "invert(1)" }}
+                      onClick={() => setWindowMode(1 - windowMode)}
+                      width={24}
+                      src={windowMode ? FullscreenIcon : SmallScreenIcon}
+                      alt=""
+                    />
+                  </FullscreenIconDiv>
                 </ModalHeader>
 
-                <QuestionDiv $animation = {modalInnerAnimation}>
-                  Enter your question or Copy/Paste JD:
-                  <TextareaAutosize
-                    minRows={4}
-                    maxRows={4}
-                    aria-label="maximum height"
-                    placeholder="Type your question to me or Copy/Paste a Job Description to see match"
-                    style={{
-                      background: "white",
-                      color: "black",
-                      fontFamily: "Inter",
-                      fontSize: "16px",
-                      width: "100%",
-                      marginTop: "5px",
-                      padding: "10px",
-                      maxWidth:"100%",
-                    }}
-                    onChange={(e) => setJD(e.target.value)}
-                  />
-                </QuestionDiv>
-
-                <AnswerDiv $animation = {modalInnerAnimation}>
-                  Enter your question or Copy/Paste JD:
-                  <TextareaAutosize
-                    minRows={4}
-                    maxRows={4}
-                    style={{
-                      background: "white",
-                      color: "black",
-                      fontFamily: "Inter",
-                      fontSize: "16px",
-                      width: "100%",
-                      marginTop: "5px",
-                      padding: "10px",
-                      maxWidth:"100%",
-                    }}
-                    value={resumeMatchDetails}
-                    disabled
-                  />
-                </AnswerDiv>
-
-                <div
-                  style={{
-                    color: "black",
-                    padding: "40px 20px 20px 20px",
-                    fontWeight: 600,
-                    display: "flex",
-                    flexDirection: "row-reverse",
-                  }}
+                <Carousel
+                  arrows={false}
+                  draggable={false}
+                  ref={carouselRef}
+                  responsive={responsive}
                 >
-                  <IButton
-                    style={{ borderRadius: "30px", height: "30px" }}
-                    onClick={(e) => {
-                      // move to next slide
-                      // loading
-                      // gemini API call
-                      matchResumePrompt(JD);
-                      setModalInnerAnimation("fadeOut");
-                      // Results
-                    }}
-                    variant="contained"
-                    color="inherit"
-                  >
-                    Submit
-                  </IButton>
-                </div>
+                  <div>
+                    {" "}
+                    <QuestionDiv $animation={modalInnerAnimation}>
+                      Enter your question or Copy/Paste JD:
+                      <TextareaAutosize
+                        minRows={4}
+                        // maxRows={4}
+                        aria-label="maximum height"
+                        placeholder="Type your question to me or Copy/Paste a Job Description to see match"
+                        style={{
+                          background: "white",
+                          color: "black",
+                          fontFamily: "Inter",
+                          fontSize: "16px",
+                          width: "100%",
+                          marginTop: "10px",
+                          padding: "10px",
+                          maxWidth: "100%",
+                          borderRadius: "8px",
+                        }}
+                        onChange={(e) => setJD(e.target.value)}
+                      />
+                    </QuestionDiv>
+                    <div
+                      style={{
+                        color: "black",
+                        padding: "40px 20px 20px 20px",
+                        fontWeight: 600,
+                        display: "flex",
+                        flexDirection: "row-reverse",
+                      }}
+                    >
+                      {/* <IButton
+                        style={{ borderRadius: "30px", height: "30px" }}
+                        onClick={handleSubmit}
+                        variant="contained"
+                        color="inherit"
+                      >
+                        Submit
+                      </IButton> */}
+                      <GeminiButton1 onClick={handleSubmit}>
+                        <GeminiSVG>✨ Submit</GeminiSVG>
+                      </GeminiButton1>
+                    </div>
+                  </div>
+                  <div>
+                    <AnswerDiv $animation={modalInnerAnimation}>
+                      Answer to your question:
+                      <TextareaAutosize
+                        minRows={4}
+                        // maxRows={4}
+                        style={{
+                          background: "white",
+                          color: "black",
+                          fontFamily: "Inter",
+                          fontSize: "16px",
+                          width: "100%",
+                          marginTop: "10px",
+                          padding: "10px",
+                          maxWidth: "100%",
+                          minWidth: "100%",
+                          maxHeight: "70vh",
+                          borderRadius: "8px",
+                        }}
+                        value={resumeMatchDetails?.answer}
+                        disabled
+                      />
+                    </AnswerDiv>
+                    <div
+                      style={{
+                        color: "black",
+                        padding: "40px 20px 20px 20px",
+                        fontWeight: 600,
+                        display: "flex",
+                        flexDirection: "row-reverse",
+                      }}
+                    >
+                      <IButton
+                        style={{ borderRadius: "30px", height: "30px" }}
+                        onClick={(e) => {
+                          // move to next slide
+                          // loading
+                          // gemini API call
+                          // matchResumePrompt(JD);
+                          setModalInnerAnimation("fadeOut");
+                          handleGoBack();
+                          // Results
+                        }}
+                        variant="contained"
+                        color="inherit"
+                      >
+                        Go Back
+                      </IButton>
+                    </div>
+                  </div>
+                </Carousel>
               </Box>
             </Fade>
           </Modal>
@@ -508,48 +679,51 @@ export default function NavBar() {
   );
 }
 
+export const responsive = {
+  superLargeDesktop: {
+    breakpoint: { max: 4000, min: 3000 },
+    items: 1,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 1,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 1,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+  },
+};
+
 const QuestionDiv = styled.div<{ $animation: string }>`
-  color: black;
+  color: white;
   margin-top: 30px;
   font-weight: 600;
   padding: 0 20px;
+  opacity: 1;
   transition: all 0.7s;
-
-  ${({ $animation }) => $animation === "fadeIn" ? `
-    opacity: 1;
-    transform: translate(0px, 0px);
-  ` : $animation === "fadeOut" ? `
-    opacity: 0;
-    transform: translate(50px, 0px);
-  ` : `
-    opacity: 1;
-  `}
+  width: 100%;
 `;
-
 
 const AnswerDiv = styled.div<{ $animation: string }>`
-  color: black;
+  color: white;
   margin-top: 30px;
+  opacity: 1;
   font-weight: 600;
   padding: 0 20px;
   transition: all 0.7s;
-
-  ${({ $animation }) => $animation === "fadeIn" ? `
-    opacity: 1;
-    transform: translate(0px, 0px);
-  ` : $animation === "fadeOut" ? `
-    opacity: 0;
-    transform: translate(50px, 0px);
-  ` : `
-    opacity: 1;
-  `}
+  width: 100%;
 `;
 
-const ModalHeader = styled.div`
+const ModalHeader = styled.div<{ $windowMode: number }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px 20px 5px 20px;
+  padding: ${({ $windowMode }) =>
+    $windowMode ? "15px 20px 5px 20px;" : "30px 20px 5px 20px;"};
 `;
 
 const CloseIconDiv = styled.div`
@@ -558,6 +732,75 @@ const CloseIconDiv = styled.div`
   cursor: pointer;
 
   &:hover {
-    filter: drop-shadow(1px 1px 1px lightgrey);
+    filter: drop-shadow(1px 1px 1px white);
   }
 `;
+
+const FullscreenIconDiv = styled.div`
+  right: 60px;
+  position: fixed;
+  cursor: pointer;
+
+  &:hover {
+    filter: drop-shadow(1px 1px 1px white);
+  }
+`;
+
+const ModalTitle = styled(Typography)`
+  font-size: 2.5rem;
+  color: white;
+  font-weight: 800;
+
+  @media (max-width: 600px) {
+    & {
+      font-size: 1.9em;
+    }
+  }
+`;
+
+// const QuestionDiv = styled.div<{ $animation: string }>`
+//   color: black;
+//   margin-top: 30px;
+//   font-weight: 600;
+//   padding: 0 20px;
+//   transition: all 0.7s;
+
+//   ${({ $animation }) =>
+//     $animation === "fadeIn"
+//       ? `
+//     opacity: 1;
+//     transform: translate(0px, 0px);
+//   `
+//       : $animation === "fadeOut"
+//       ? `
+//     opacity: 0;
+//     transform: translate(50px, 0px);
+//   `
+//       : `
+//     opacity: 1;
+//   `}
+// `;
+
+// const AnswerDiv = styled.div<{ $animation: string }>`
+//   color: black;
+//   margin-top: 30px;
+//   font-weight: 600;
+//   padding: 0 20px;
+//   transition: all 0.7s;
+
+//   ${({ $animation }) =>
+//     $animation === "fadeIn"
+//       ? `
+//   opacity: 0;
+//   transform: translate(50px, 0px);
+//   `
+//       : $animation === "fadeOut"
+//       ? `
+//   opacity: 1;
+//   transform: translate(0px, 0px);
+
+//   `
+//       : `
+//     opacity: 0;
+//   `}
+// `;

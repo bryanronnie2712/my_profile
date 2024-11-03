@@ -227,6 +227,11 @@ const BannerText = styled.h1`
   color: black;
   text-align: center;
   font-size: 2.5rem;
+  @media (max-width: 600px) {
+    & {
+      font-size: 1.9em;
+    }
+  }
   margin: 30px 0;
 `;
 

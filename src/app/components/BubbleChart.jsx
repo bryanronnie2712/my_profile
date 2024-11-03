@@ -85,86 +85,111 @@ import * as d3 from "d3";
 //   return <svg ref={svgRef}></svg>;
 // };
 
-const BubbleChart = ({ data, searchTerm }) => {
+const BubbleChart = ({ data }) => {
   const svgRef = useRef();
 
   useEffect(() => {
     const svg = d3.select(svgRef.current);
-    svg.selectAll("*").remove(); // Clear previous chart
+    const width = Math.min(900, window.innerWidth * 0.95);
+    const height = Math.min(500, window.innerHeight * 0.60);
+    
+    // Clear previous chart content
+    svg.selectAll("*").remove();
 
-    const width = 600;
-    const height = 400;
-
+    // Define the color scale
     const color = d3.scaleOrdinal(d3.schemeCategory10);
 
-    // Define bubble simulation
-    const simulation = d3
-      .forceSimulation(data)
-      .force("charge", d3.forceManyBody().strength(5))
-      .force("center", d3.forceCenter(width / 2, height / 2))
-      .force(
-        "collision",
-        d3.forceCollide().radius((d) => d.radius + 1)
-      );
+    // Define the pack layout
+    const pack = d3.pack()
+      .size([width, height])
+      .padding(1.5);
 
-    // Create group elements for each bubble
-    const group = svg
-      .attr("width", width)
-      .attr("height", height)
-      .selectAll("g")
-      .data(data)
-      .enter()
-      .append("g")
-      .on("mouseover", function (event, d) {
-        d3.select(this).select("circle")
-          .attr("stroke", "#000")          // Change border color
-          .attr("stroke-width", 3)         // Increase border width
-          .attr("fill", d3.rgb(color(d.category)).darker(1)); // Darken fill color
-        d3.select(this).select("text")
-          .attr("font-weight", "bold")     // Make text bold
-          .attr("font-size", (d) => d.radius/3)
-          .attr("fill", "#000");           // Change text color
-      })
-      .on("mouseout", function (event, d) {
-        d3.select(this).select("circle")
-          .attr("stroke", "#fff")          // Reset border color
-          .attr("stroke-width", 1.5)       // Reset border width
-          .attr("fill", color(d.category)); // Reset fill color
-        d3.select(this).select("text")
-          .attr("font-weight", "normal")   // Reset text weight
-          .attr("font-size", (d) => d.radius/3)
-          .attr("fill", "black");          // Reset text color
+    // Process data into a hierarchical structure
+    const root = d3.hierarchy({ children: data })
+      .sum(d => d.radius)
+      .each(d => {
+        if (d.id) {
+          const id = d.id;
+          const i = id.lastIndexOf(".");
+          d.id = id;
+          d.package = id.slice(0, i);
+          d.class = id.slice(i + 1);
+        }
       });
 
+    // Generate the nodes
+    const nodes = pack(root).leaves();
+
+    // Determine minimum and maximum y-coordinates to calculate vertical bounds
+    const yMin = d3.min(nodes, d => d.y - d.r);
+    const yMax = d3.max(nodes, d => d.y + d.r);
+
+    // Adjust the SVG height based on the calculated bounds
+    const adjustedHeight = yMax - yMin;
+
+    // Create groups for each bubble
+    const node = svg
+      .attr("width", width)
+      .attr("height", adjustedHeight + 10) // Adjust height to remove blank space
+      .attr("viewBox", `0 ${yMin} ${width} ${adjustedHeight}`) // Shift viewBox to start at yMin
+      .selectAll("g")
+      .data(nodes)
+      .enter()
+      .append("g")
+      .attr("transform", d => `translate(${d.x},${d.y})`)
+      .attr("class", "node");
+
     // Append circles to each group
-    group
-      .append("circle")
-      .attr("r", (d) => d.radius)
-      .attr("fill", (d) => color(d.category))
-      .attr("stroke", "#fff")
-      .attr("stroke-width", 1.5);
-
-    // Append text to each group
-    group
-      .append("text")
-      .attr("text-anchor", "middle")
-      .text((d) => d.name)
-      .attr("font-size", (d) => d.radius/3)
-      .attr("font-weight", 500)
-      .attr("fill", "black")
-      .attr("cursor", "default")
-      .attr("dy", (d) => d.radius/8); // Center text vertically within the circle
-
-    // Update positions on each tick of the simulation
-    simulation.on("tick", () => {
-      group.attr("transform", (d) => `translate(${d.x}, ${d.y})`);
+    node.append("circle")
+    .attr("id", d => d.id)
+    .attr("r", d => d.r)
+    .style("fill", d => color(d.category))
+    .attr("fill", (d) => color(d.category))
+    .attr("stroke", "#fff")
+    .attr("stroke-width", 1.5)
+    .attr("cursor", "pointer")          // Change border color
+    .on("mouseover", function (event, d) {
+      d3.select(this)
+        .attr("stroke", "#000")          // Change border color
+        .attr("stroke-width", 3)         // Increase border width
+        .attr("fill", d3.rgb(color(d.category)).darker(1));  // Darken fill color
+    })
+    .on("mouseout", function (event, d) {
+      d3.select(this)
+        .attr("stroke", "#fff")          // Reset border color
+        .attr("stroke-width", 1.5)       // Reset border width
+        .attr("fill", color(d.category)); // Reset fill color;
     });
 
-    return () => simulation.stop();
-  }, [data, searchTerm]);
+
+    // Append text to the center of each circle
+    node.append("text")
+      .attr("dy", "0.3em")  // Center text vertically
+      .style("text-anchor", "middle") // Center text horizontally
+      .style("fill", "#fff") // Text color
+      .style("font-size", d => Math.min(2 * d.r / d.data.name.length, d.r / 3) + "px")  // Dynamically adjust font size
+      .attr("cursor", "pointer")          // Change border color
+      .text(d => d.data.name)
+      .on("mouseover", function (event, d) {
+        d3.select(this.parentNode).select("circle")  // Select parent circle
+          .attr("stroke", "#000")                    // Change border color
+          .attr("cursor", "pointer")                 // Change cursor style
+          .attr("stroke-width", 3)                   // Increase border width
+          .attr("fill", d3.rgb(color(d.category)).darker(1));  // Darken fill color
+      })
+      .on("mouseout", function (event, d) {
+        d3.select(this.parentNode).select("circle")  // Select parent circle
+          .attr("stroke", "#fff")                    // Reset border color
+          .attr("stroke-width", 1.5)                 // Reset border width
+          .attr("fill", color(d.category));          // Reset fill color
+      });
+
+    node.append("title").text((d) => d.name);
+
+
+  }, [data]);
 
   return <svg ref={svgRef}></svg>;
 };
-
 
 export default BubbleChart;

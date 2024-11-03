@@ -26,7 +26,7 @@ const BannerText = styled.h1`
 
   @media (max-width: 600px) {
     & {
-      font-size: 1.7em;
+      font-size: 1.9em;
     }
   }
 `;
