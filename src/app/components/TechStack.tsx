@@ -1,8 +1,6 @@
 "use client";
 import { Container } from "@mui/material";
 import styled, { keyframes } from "styled-components";
-import Image from "next/image";
-import { techIcons } from "../data/cardValues";
 import BubbleChart from "./BubbleChart";
 import { useState } from "react";
 
@@ -29,16 +27,16 @@ const BannerText = styled.h1`
 
 export default function TechStack() {
   const sampleData = [
-    { id: 1, name: "React", category: "A", radius: 100 },
-    { id: 2, name: "Java", category: "B", radius: 60 },
-    { id: 3, name: "NextJS", category: "A", radius: 30 },
-    { id: 4, name: "PostgreSQL", category: "C", radius: 35 },
-    { id: 5, name: "Python", category: "B", radius: 40 },
-    { id: 6, name: "node.js", category: "B", radius: 10 },
-    { id: 7, name: "GraphQL", category: "B", radius: 25 },
-    { id: 8, name: "SpringBoot", category: "A", radius: 50 },
-    { id: 9, name: "Matlab", category: "C", radius: 35 },
-    { id: 10, name: "Gemini", category: "B", radius: 40 },
+    { id: 1, name: "React", category: 1, radius: 100 },
+    { id: 2, name: "Java", category: 2, radius: 60 },
+    { id: 3, name: "NextJS", category: 1, radius: 30 },
+    { id: 4, name: "PostgreSQL", category: 3, radius: 35 },
+    { id: 5, name: "Python", category: 2, radius: 40 },
+    { id: 6, name: "node.js", category: 2, radius: 10 },
+    { id: 7, name: "GraphQL", category: 3, radius: 25 },
+    { id: 8, name: "SpringBoot", category: 2, radius: 50 },
+    { id: 9, name: "Matlab", category: 4, radius: 35 },
+    { id: 10, name: "Gemini", category: 5, radius: 40 },
     // Add more data points as needed
   ];
 

@@ -112,7 +112,7 @@ export default function Projects() {
     <IContainer sx={{ flexGrow: 1 }}>
       <BannerText>Projects</BannerText>
       <CardsDiv>
-        <Carousel showDots responsive={responsive}>
+        <Carousel autoPlay pauseOnHover showDots responsive={responsive}>
           {cards.map((card: Card, i: number) => (
             <Card key={"card" + i}>
               <div style={{ height: 240, background: "red", width: "100%" }}>

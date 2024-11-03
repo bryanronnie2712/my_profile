@@ -18,7 +18,14 @@ import { TransitionProps } from "@mui/material/transitions";
 import { useEffect, useRef, useState } from "react";
 import { runPrompt } from "../utils/gemini";
 import Image from "next/image";
-import { BackArrow, CloseIcon, FullscreenIcon, SmallScreenIcon } from "../assets";
+import {
+  BackArrow,
+  CloseIcon,
+  FullLogo,
+  FullscreenIcon,
+  SmallLogo,
+  SmallScreenIcon,
+} from "../assets";
 import Carousel from "react-multi-carousel";
 // import BryanLogo from '../favicon.png';
 const openInWindowSVG = (
@@ -370,7 +377,7 @@ export default function NavBar() {
   }>({});
 
   const matchResumePrompt = async (query: string) => {
-    const llmResponse = await runPrompt(`
+    const LLMInput = `
     Refer my information as a resume, biography, etc & answer the questions in the first-person. 
     Always the first character of the answer should be "{" and last be "}"
 
@@ -393,27 +400,84 @@ export default function NavBar() {
     Reference Documents:
 
     Statement of Purpose
-      The rapid evolution of technology particularly in Software and Artificial Intelligence is transforming industries worldwide. Telecommunications, an essential backbone of global connectivity has seen remarkable advancements through AI from automating customer support to enabling predictive network analysis and self-healing systems. My professional journey has ignited a passion for leveraging these emerging technologies to create solutions that matter. To achieve my aspirations, the MEng program at UBC’s ECE department is my ideal choice because of its interdisciplinary curriculum, which will provide a comprehensive view of computer engineering, networking, and AI/ML. By combining these domains, I aim to innovate in processes across diverse industries using AI, particularly within telecommunications, where my background can have a meaningful impact.
+      The rapid evolution of technology particularly in Software and Artificial Intelligence is transforming industries worldwide. Telecommunications, an essential backbone of global connectivity has seen remarkable advancements through AI from automating customer support to enabling predictive network analysis and self-healing systems. My professional journey has ignited a passion for leveraging these emerging technologies to create solutions that matter. To achieve my aspirations, the MEng program at your university's ECE department is my ideal choice because of its interdisciplinary curriculum, which will provide a comprehensive view of computer engineering, networking, and AI/ML. By combining these domains, I aim to innovate in processes across diverse industries using AI, particularly within telecommunications, where my background can have a meaningful impact.
       My early interest in technology began in school, where I was introduced to programming through languages like QBasic and C++. This early enthusiasm guided me to pursue a degree in Information Technology at Siva Subramaniya Nadar College of Engineering where I deepened my understanding of computing systems and their real-world applications. These foundational experiences shaped my professional career as a Fullstack Developer at Verizon Communications. Here, I furthered my knowledge of telecom software and developed a fascination with how cutting-edge technologies like generative AI are reshaping the industry.
-      In addition to my industry experience, I have pursued research in interdisciplinary applications of computing. As an avid music and language lover, I applied my interest in computing to the field of music classification and published a conference paper titled “Exploring the Role of Entropy in Music Classification” in the Springer CCIS book series with my professor Dr. R. Srinivasan. Through this work, I developed strong analytical skills and a problem-solving mindset which I believe will be assets as I navigate the challenging application-oriented curriculum of UBC’s MEng program.
+      In addition to my industry experience, I have pursued research in interdisciplinary applications of computing. As an avid music and language lover, I applied my interest in computing to the field of music classification and published a conference paper titled “Exploring the Role of Entropy in Music Classification” in the Springer CCIS book series with my professor Dr. R. Srinivasan. Through this work, I developed strong analytical skills and a problem-solving mindset which I believe will be assets as I navigate the challenging application-oriented curriculum of MEng program.
       At Verizon, I have contributed to multiple projects, including proofs of concept that have been integrated into enterprise applications. I developed real-time analytics tools and a Gen AI-powered BigQuery aider tool. Currently, I am working on an AI-driven app tour that guides users through steps based on their requests, utilizing natural language processing to enhance user experience. Additionally, I am personally exploring Gen AI's potential by developing an application centred on AI resumé-matching, a prototype of which can be found on my portfolio website. I am excited by the prospect of leveraging these emerging technologies to build innovative products, and I firmly believe that advanced academic training will allow me to realize this vision.
       My experience at Verizon AI & D has exposed me to the intricate dynamics of telecommunications, where I have worked closely with AI, cloud, and data engineering teams. My ability to quickly adapt to new challenges and contribute to key projects led to my promotion to Fullstack Engineer II within 1.5 years as a recognition of my dedication and technical growth at Verizon. Having worked here for around three years has solidified my desire to pursue specialization in this domain. I am particularly fascinated by the integration of generative AI in network operations and its potential to transform the telecommunications industry.
       While my brother and I often compete academically, he is pursuing an M.Eng in ECE with a focus on electronics while my own passion lies more in the computer engineering aspects of ECE. I am eager to carve out my path by focusing on technologies that combine AI/ML and software to solve real-world problems. I believe that the MEng program at your institution will provide the perfect platform for me to build on my foundation and push the boundaries of innovation.
-      The University of British Columbia is my preferred choice for a master’s program due to its exceptional research facilities and incubation centers like the Robson Square Hub that foster innovation and entrepreneurship. The university’s dedication to advancing the fields of software and AI/ML aligns with my aspirations. I am particularly interested in engaging with research labs like the Software Analysis and Test Lab (SALT), where I hope to deepen my knowledge of software engineering and its applications. I am also eager to connect with new people through the Electrical and Computer Engineering Graduate Student Association (ECEGSA) to brainstorm innovative solutions to complex industry challenges.
-      By the time I join the MEng program, I will have 3.8 years of industry experience spanning AI, software development, and cloud technologies. My professional roles have equipped me with the skills to lead projects, develop innovative solutions, and apply AI in real-world scenarios, particularly in telecommunications and e-commerce. In four years, I envision applying the skills acquired at UBC to become a senior resource in the software development industry specializing in AI-driven solutions like user experience enhancement. I am confident that the MEng program at UBC will enable me to achieve my goals and make meaningful contributions to the field. I look forward to the opportunity to join UBC’s vibrant academic community and contribute to its pioneering research in AI and telecommunications.
+      By the time I join the MEng program, I will have 3.8 years of industry experience spanning AI, software development, and cloud technologies. My professional roles have equipped me with the skills to lead projects, develop innovative solutions, and apply AI in real-world scenarios, particularly in telecommunications and e-commerce. In four years, I envision applying the skills acquired at your university to become a senior resource in the software development industry specializing in AI-driven solutions like user experience enhancement. I am confident that the MEng program at your university will enable me to achieve my goals and make meaningful contributions to the field. I look forward to the opportunity to join your university's vibrant academic community and contribute to its pioneering research in AI and telecommunications.
       Thank you for considering my application.
       Bryan Ronnie J
 
+    Resume:
+      Bryan Ronnie J
+      Fullstack Engineer(React/Java/Node)
+      +91 6379938456 • bryanronniej@gmail.com • github.com/bryanronnie2712 • www.linkedin.com/in/bryan-ronnie
+      WORK EXPERIENCE________________________________________________________________________________________
+      Verizon Communications Inc. Hyderabad & Chennai, India
+      Fullstack Engineer II (Full Time) Dec 2023 - Present
+      ● Designed and developed data-driven applications for Verizon Business(VBG) and Verizon Consumer(VCG) Groups.
+      ● Acted as a production deployment support person-of-contact ensuring the smooth delivery of applications.
+      ● Prompted and developed applications for Generative AI use cases using Verizon GenAI Services.
+      ● Enabled dynamic allocation with bi-directional conversions for Partner Service Optimisation(PSO), saving several
+      man-hours per year and preventing calculation errors.
+      ● Skills: ReactJS, node.js, Java Springboot, Microservices, PostgreSQL, GraphQL
+      Fullstack Engineer I (Full Time) July 2022 - Dec 2023
+      ● Implemented near-real-time inputs for retail sales scenarios by GraphQL polling for better analysis & prediction.
+      ● Converted backend vendor inputs in sales to reusable dynamic code reducing package size by an estimated 30%.
+      Student Intern (Part-Time) Feb 2022 - June 2022
+      ● Started contributing to the development from week 1 on elementary aspects like the design of the web applications.
+      ● Created a charts dashboard using d3.js for postpaid analytics at the end of the internship.
+      Akila Castings Private Ltd. Remote, India
+      Web Development Intern (Part-Time) May 2021 - July 2021
+      ● Reclaimed administrator rights to the company's domain.
+      ● Developed and deployed the company's website (www.akilacastings.com)
+      ● Skills: Domains, SSL, HTML/CSS/JS.
+      EDUCATION________________________________________________________________________________________________
+      Siva Subramaniya Nadar College Of Engineering Chennai, India
+      Bachelor of Technology - Information Technology Aug 2018 - May 2022
+      ● Graduated with First Class Distinction (91% GPA in last two years)
+      ● Active member of SSN Coding Club
+      ● Volunteered in the National Service Scheme(NSS)
+      Trinity School Coimbatore, India
+      Higher Secondary(11th, 12th) June 2016 - March 2018
+      ● Scored 96.7% overall in state board exams, 99% in Mathematics
+      ● Electives - Computer Science(96.5%) & French(99%)
+      Sri Jayendra Saraswathy Vidyalaya Coimbatore, India
+      Secondary School(9th, 10th) June 2014 - April 2016
+      ● Scored 97.4% overall in state board exams, 100% in Mathematics
+      PERSONAL PROJECTS____________________________________________________________________________________
+      Portfolio Link - Built using NextJS - https://bryanronnie.vercel.app
+      AI Resumé Match - This feature helps select candidates effectively by comparing the candidate's resume and the job
+      description using Gen AI (Coming to production by mid-Nov 2024). Tech Stack: Next JS, Gemini AI
+      COVID-19 Tracker - Provides daily new COVID cases and deaths per country with geographical bubble chart
+      visualisation. Tech Stack: HTML/CSS/Javascript
+      PUBLICATIONS____________________________________________________________________________________________
+      Exploring the Role of Entropy in Music Classification - Second International Conference On Speech And Language
+      Technologies For Low-Resource Languages, December 6-8, 2023 (spelll.org)
+      Published Paper link - https://link.springer.com/chapter/10.1007/978-3-031-58495-4_24
+      SKILLS & INTERESTS______________________________________________________________________________________
+      Coding Python, FastAPI, HTML/CSS/JS, ReactJS/TS, node.js, Java, GraphQL, PostgreSQL
+      Dev Tools VS Code, Git, Matlab, GCP, Heroku, Render, Netlify, Postman, PGAdmin, Linux
+      Languages Tamil(Native), English(C1), French(A2-eq), German(Beginner)
+      Hobbies Music, Languages, Pencil Sketch, Gaming
+
       QUESTION: ${query}
-    `);
-
-    // Extract the JSON-like content within the curly braces
-    const extracted = llmResponse.match(/\{.*\}/)?.[0] || "";
-    console.log("resumeMatchDetails", extracted);
-    setResumeMatchDetails(JSON.parse(extracted));
+    `;
+    try {
+      const llmResponse = await runPrompt(LLMInput);
+      // Extract the JSON-like content within the curly braces
+      const extracted = llmResponse.match(/\{.*\}/)?.[0] || "";
+      console.log("resumeMatchDetails", extracted);
+      setResumeMatchDetails(JSON.parse(extracted));
+    } catch {
+      setResumeMatchDetails({
+        answer:
+          "We are facing some issue, probably in content generation. Can you please go back and retry? 😊",
+      });
+    }
   };
-
-  /////////////////////////////////////////
 
   const [JD, setJD] = useState("");
   const [modalInnerAnimation, setModalInnerAnimation] = useState("appear");
@@ -430,7 +494,6 @@ export default function NavBar() {
     borderRadius: 2,
     border: "none",
     borderBottom: "2px solid rgba(80, 80, 80, 0.4)",
-    // background: "linear-gradient(135deg, #ffffffcc, #ffffffbf, #ebe5ee)",
     background: "repeating-linear-gradient(315deg, #000000e3, #434343)",
     backdropFilter: "saturate(25%) blur(7px)",
     transition: "height 0.5s",
@@ -445,20 +508,15 @@ export default function NavBar() {
 
     // Move to the next slide
     carouselRef.current.next();
-
-    // Set your modal animation if needed
-    setModalInnerAnimation("fadeOut");
   };
 
   const handleGoBack = () => {
     // Call your matchResumePrompt function here
+    setResumeMatchDetails({});
     // matchResumePrompt(JD);
 
     // Move to the next slide
     carouselRef.current.previous();
-
-    // Set your modal animation if needed
-    setModalInnerAnimation("fadeOut");
   };
 
   return (
@@ -557,8 +615,9 @@ export default function NavBar() {
                 </ModalHeader>
 
                 <Carousel
-                  arrows={false}
+                  swipeable={false}
                   draggable={false}
+                  arrows={false}
                   ref={carouselRef}
                   responsive={responsive}
                 >
@@ -566,92 +625,78 @@ export default function NavBar() {
                     {" "}
                     <QuestionDiv $animation={modalInnerAnimation}>
                       Enter your question or Copy/Paste JD:
-                      <TextareaAutosize
+                      <TextareaAutosize1
+                        $windowMode={windowMode}
                         minRows={4}
-                        // maxRows={4}
                         aria-label="maximum height"
                         placeholder="Type your question to me or Copy/Paste a Job Description to see match"
-                        style={{
-                          background: "white",
-                          color: "black",
-                          fontFamily: "Inter",
-                          fontSize: "16px",
-                          width: "100%",
-                          marginTop: "10px",
-                          padding: "10px",
-                          minHeight: !windowMode ? "70vh" : "auto",
-                          maxHeight: "70vh",
-                          maxWidth: "100%",
-                          borderRadius: "8px",
-                        }}
                         onChange={(e) => setJD(e.target.value)}
                       />
                     </QuestionDiv>
-                    <div
-                      style={{
-                        color: "black",
-                        padding: "40px 20px 20px 20px",
-                        fontWeight: 600,
-                        display: "flex",
-                        flexDirection: "row-reverse",
-                      }}
-                    >
+                    <RowEndFlex>
                       <GeminiButton1 onClick={handleSubmit}>
                         <GeminiSVG>✨ Submit</GeminiSVG>
                       </GeminiButton1>
-                    </div>
+                    </RowEndFlex>
                   </div>
-                  <div>
-                    <AnswerDiv $animation={modalInnerAnimation}>
-                      Answer to your question:
-                      <TextareaAutosize
-                        minRows={4}
-                        // maxRows={4}
-                        style={{
-                          background: "white",
-                          color: "black",
-                          fontFamily: "Inter",
-                          fontSize: "16px",
-                          width: "100%",
-                          marginTop: "10px",
-                          padding: "10px",
-                          maxWidth: "100%",
-                          minWidth: "100%",
-                          minHeight: !windowMode ? "70vh" : "auto",
-                          maxHeight: "70vh",
-                          borderRadius: "8px",
-                        }}
-                        value={resumeMatchDetails?.answer}
-                        disabled
-                      />
-                    </AnswerDiv>
+
+                  {!resumeMatchDetails && (
                     <div
                       style={{
-                        color: "black",
-                        padding: "40px 20px 20px 20px",
-                        fontWeight: 600,
                         display: "flex",
-                        flexDirection: "row-reverse",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        height: "calc(100% - 40px)",
                       }}
                     >
-                      <IButton
-                        style={{ borderRadius: "30px", height: "30px", width:"100px", paddingLeft:"0px" }}
-                        onClick={(e) => {
-                          // move to next slide
-                          // loading
-                          // gemini API call
-                          // matchResumePrompt(JD);
-                          setModalInnerAnimation("fadeOut");
-                          handleGoBack();
-                          // Results
-                        }}
-                        variant="contained"
-                        color="inherit"
-                      >
-                        <Image src={BackArrow} alt="" width={10} style={{filter:"invert(1)", marginRight:"10px"}}></Image> Back
-                      </IButton>
+                      <Loader src={FullLogo} alt="" width={200}></Loader>
                     </div>
-                  </div>
+                  )}
+
+                  {resumeMatchDetails?.answer ? (
+                    <div>
+                      <AnswerDiv $animation={modalInnerAnimation}>
+                        Answer to your question:
+                        <TextareaAutosize1
+                          minRows={4}
+                          $windowMode={windowMode}
+                          value={resumeMatchDetails?.answer}
+                          disabled
+                        />
+                      </AnswerDiv>
+                      <RowEndFlex>
+                        <IButton
+                          style={{
+                            borderRadius: "30px",
+                            height: "30px",
+                            width: "100px",
+                            paddingLeft: "0px",
+                          }}
+                          onClick={(e) => {
+                            // move to next slide
+                            // loading
+                            // gemini API call
+                            // matchResumePrompt(JD);
+                            setModalInnerAnimation("fadeOut");
+                            handleGoBack();
+                            // Results
+                          }}
+                          variant="contained"
+                          color="inherit"
+                        >
+                          <Image
+                            src={BackArrow}
+                            alt=""
+                            width={10}
+                            style={{ filter: "invert(1)", marginRight: "10px" }}
+                          ></Image>{" "}
+                          Back
+                        </IButton>
+                      </RowEndFlex>
+                    </div>
+                  ) : (
+                    <div></div>
+                  )}
                 </Carousel>
               </Box>
             </Fade>
@@ -692,6 +737,44 @@ export const responsive = {
     items: 1,
   },
 };
+
+const Loader = styled(Image)`
+  animation: rotate 1.5s cubic-bezier(1, 0, 0, 1) infinite;
+  filter: drop-shadow(0px 0px 0.3px goldenrod);
+
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`;
+
+const RowEndFlex = styled.div`
+  color: black;
+  padding: 40px 20px 20px 20px;
+  font-weight: 600;
+  display: flex;
+  flex-direction: row-reverse;
+`;
+
+const TextareaAutosize1 = styled(TextareaAutosize)<{ $windowMode: number }>`
+  background: white;
+  color: black;
+  font-family: Inter;
+  font-size: 16px;
+  width: 100%;
+  margin-top: 10px;
+  min-width: 100%;
+  padding: 10px;
+  min-height: ${({ $windowMode }) => (!$windowMode ? "65vh" : "auto")};
+  max-height: 65vh;
+  max-width: 100%;
+  border-radius: 8px;
+  transition: all 0.7s;
+`;
 
 const QuestionDiv = styled.div<{ $animation: string }>`
   color: white;
@@ -742,7 +825,7 @@ const FullscreenIconDiv = styled.div`
 `;
 
 const ModalTitle = styled(Typography)`
-  font-size: 2.5rem;
+  font-size: 2.3rem;
   color: white;
   font-weight: 800;
 
@@ -752,50 +835,3 @@ const ModalTitle = styled(Typography)`
     }
   }
 `;
-
-// const QuestionDiv = styled.div<{ $animation: string }>`
-//   color: black;
-//   margin-top: 30px;
-//   font-weight: 600;
-//   padding: 0 20px;
-//   transition: all 0.7s;
-
-//   ${({ $animation }) =>
-//     $animation === "fadeIn"
-//       ? `
-//     opacity: 1;
-//     transform: translate(0px, 0px);
-//   `
-//       : $animation === "fadeOut"
-//       ? `
-//     opacity: 0;
-//     transform: translate(50px, 0px);
-//   `
-//       : `
-//     opacity: 1;
-//   `}
-// `;
-
-// const AnswerDiv = styled.div<{ $animation: string }>`
-//   color: black;
-//   margin-top: 30px;
-//   font-weight: 600;
-//   padding: 0 20px;
-//   transition: all 0.7s;
-
-//   ${({ $animation }) =>
-//     $animation === "fadeIn"
-//       ? `
-//   opacity: 0;
-//   transform: translate(50px, 0px);
-//   `
-//       : $animation === "fadeOut"
-//       ? `
-//   opacity: 1;
-//   transform: translate(0px, 0px);
-
-//   `
-//       : `
-//     opacity: 0;
-//   `}
-// `;

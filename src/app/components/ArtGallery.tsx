@@ -3,6 +3,8 @@
 import * as React from "react";
 import { AppBar, Container, ImageList, ImageListItem } from "@mui/material";
 import styled from "styled-components";
+import { Friends, Pirate, Titanic } from "../assets";
+import Image from "next/image";
 
 interface Card {
   title: string;
@@ -47,15 +49,27 @@ const cards: Card[] = [
   },
 ];
 
+const arts = [
+  { title: " Pirates ", src: Pirate },
+  { title: " Friends", src: Friends },
+  { title: "Titanic", src: Titanic },
+];
+
 export default function ArtGallery() {
   return (
     <IContainer sx={{ flexGrow: 1 }}>
       <BannerText>Art Gallery</BannerText>
       <CardsDiv>
-        Temporarily, please check my works here:{" "}
-        <a href="https://fineartamerica.com/profiles/bryan-ronnie">
-          https://fineartamerica.com/profiles/bryan-ronnie
-        </a>
+        {arts.map((art: any, index: number) => (
+          <Image
+            loading="lazy"
+            key={"art" + index}
+            // width={500}
+            src={art.src}
+            alt=""
+            layout="responsive"
+          />
+        ))}
       </CardsDiv>
     </IContainer>
   );
@@ -65,8 +79,6 @@ export const CardsWrapper = styled.section`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  // grid-template-columns: 1fr 1fr 1fr;
-  // grid-gap: 4rem;
   flex-wrap: wrap;
   padding: 0;
   margin: 0 auto;
@@ -213,12 +225,9 @@ const IContainer = styled(Container)`
 `;
 
 const CardsDiv = styled(Container)`
-  // display: flex;
-  // flex-wrap: wrap;
-  // gap: 10px;
-  // box-sizing: border-box;
-  // justify-content: center;
-  // flex-direction: column;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
   text-align: center;
   padding: 0;
 `;
