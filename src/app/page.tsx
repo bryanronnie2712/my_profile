@@ -10,6 +10,7 @@ import Projects from "./components/Projects";
 import Publications from "./components/Publications";
 import Footer from "./components/Footer";
 import ArtGallery from "./components/ArtGallery";
+import Experience from "./components/Experience";
 // import NotificationBar from "./components/NotificationBar";
 // import NotificationBar from "./components/NotificationBar";
 
@@ -30,6 +31,7 @@ export default function Home() {
       <Projects/>
       <ArtGallery/>
       <Publications/>
+      <Experience/>
       <Footer/>
     </CustomPaper>
   );

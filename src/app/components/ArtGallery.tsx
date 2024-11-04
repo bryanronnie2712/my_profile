@@ -3,7 +3,7 @@
 import * as React from "react";
 import { AppBar, Container, ImageList, ImageListItem } from "@mui/material";
 import styled from "styled-components";
-import { Friends, Pirate, Titanic } from "../assets";
+import { Cottage, EdSheeran, Friends, Pirate, SerBronn, Stromae, Titanic } from "../assets";
 import Image from "next/image";
 
 interface Card {
@@ -53,6 +53,14 @@ const arts = [
   { title: " Pirates ", src: Pirate },
   { title: " Friends", src: Friends },
   { title: "Titanic", src: Titanic },
+  { title: "Cottage", src: Cottage },
+  { title: "EdSheeran", src: EdSheeran },
+  { title: "SerBronn", src: SerBronn },
+  { title: "Stromae", src: Stromae },
+  ,
+  ,
+  ,
+  ,
 ];
 
 export default function ArtGallery() {
@@ -61,15 +69,20 @@ export default function ArtGallery() {
       <BannerText>Art Gallery</BannerText>
       <CardsDiv>
         {arts.map((art: any, index: number) => (
+          <div
+          style={{width: "20vw"}}
+          >
           <Image
             loading="lazy"
             key={"art" + index}
-            // width={500}
+            width={500}
             src={art.src}
             alt=""
             layout="responsive"
           />
+          </div>
         ))}
+        
       </CardsDiv>
     </IContainer>
   );
@@ -230,6 +243,7 @@ const CardsDiv = styled(Container)`
   gap: 10px;
   text-align: center;
   padding: 0;
+  justify-content: center;
 `;
 
 const BannerText = styled.h1`

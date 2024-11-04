@@ -32,8 +32,22 @@ import CloseIcon from "./close.png";
 import Pirate from "./gallery/pirate.jpg";
 import Titanic from "./gallery/jack-and-rose-bryan-ronnie.jpg";
 import Friends from "./gallery/friends-bryan-ronnie.jpg";
+import Cottage from "./gallery/cottage.jpg";
+import EdSheeran from "./gallery/edsheeran.jpg";
+import SerBronn from "./gallery/serbronn.jpg";
+import Stromae from "./gallery/stromae.jpg";
+
+
+// Experience
+
+import AkilaCastings from "./akilacastings.jpeg";
 
 export {
+  Cottage,
+  EdSheeran,
+  SerBronn,
+  Stromae,
+  AkilaCastings,
   Friends,
   Pirate,
   Titanic,
