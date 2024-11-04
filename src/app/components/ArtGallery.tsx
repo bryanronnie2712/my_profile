@@ -69,7 +69,7 @@ export default function ArtGallery() {
       <BannerText>Art Gallery</BannerText>
       <CardsDiv>
         {arts.map((art: any, index: number) => (
-          <div
+          <div key={"artdiv" + index}
           style={{width: "20vw"}}
           >
           <Image
