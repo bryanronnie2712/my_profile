@@ -1,92 +1,74 @@
 "use client";
 
 import * as React from "react";
-import { AppBar, Container, ImageList, ImageListItem } from "@mui/material";
+import { Container} from "@mui/material";
 import styled from "styled-components";
-import { Cottage, EdSheeran, Friends, Pirate, SerBronn, Stromae, Titanic } from "../assets";
+import {
+  Cottage,
+  EdSheeran,
+  Friends,
+  LastLeaf,
+  Pirate,
+  SerBronn,
+  Stromae,
+  Titanic,
+} from "../assets";
 import Image from "next/image";
 
-interface Card {
-  title: string;
-  description: string;
-  bgColor: string;
-  tags: Tag[];
-}
-
-interface Tag {
-  text: string;
-  color: string;
-}
-
-const cards: Card[] = [
-  {
-    title: "My First Web Project",
-    description:
-      "My First College Web Project: webpage promo for a local gaming shop",
-    bgColor: "blue",
-    tags: [
-      { text: "AngularJS", color: "brown" },
-      { text: "HTML", color: "#e44c25" },
-      { text: "CSS", color: "#1572b7" },
-      { text: "Javascript", color: "#f19f0b" },
-    ],
-  },
-  {
-    title: "Text Editor",
-    description: "A simple text editor with mostly used features.",
-    bgColor: "brown",
-    tags: [{ text: "AngularJS", color: "brown" }],
-  },
-  {
-    title: "Instagram clone",
-    description: "Let's go social this time!",
-    bgColor: "red",
-    tags: [
-      { text: "ReactJS", color: "cyan" },
-      { text: "NodeJS", color: "green" },
-      { text: "Firebase", color: "orange" },
-    ],
-  },
-];
-
 const arts = [
-  { title: " Pirates ", src: Pirate },
   { title: " Friends", src: Friends },
-  { title: "Titanic", src: Titanic },
-  { title: "Cottage", src: Cottage },
   { title: "EdSheeran", src: EdSheeran },
+  { title: "Titanic", src: Titanic },
+  { title: "LastLeaf", src: LastLeaf },
   { title: "SerBronn", src: SerBronn },
+  { title: " Pirates ", src: Pirate },
+  { title: "Cottage", src: Cottage },
   { title: "Stromae", src: Stromae },
-  ,
-  ,
-  ,
-  ,
 ];
 
 export default function ArtGallery() {
   return (
-    <IContainer sx={{ flexGrow: 1 }}>
-      <BannerText>Art Gallery</BannerText>
-      <CardsDiv>
-        {arts.map((art: any, index: number) => (
-          <div key={"artdiv" + index}
-          style={{width: "20vw"}}
-          >
-          <Image
-            loading="lazy"
-            key={"art" + index}
-            width={500}
-            src={art.src}
-            alt=""
-            layout="responsive"
-          />
-          </div>
-        ))}
-        
-      </CardsDiv>
-    </IContainer>
+    <div
+      style={{
+        width: "100%",
+        background:
+          "url(https://i.pinimg.com/564x/81/64/7e/81647eb1d13c460eb5d239ec09cdca69.jpg)",
+          backgroundSize: "contain",
+      }}
+    >
+      <IContainer sx={{ flexGrow: 1 }}>
+        <BannerText>Art Gallery</BannerText>
+        <CardsDiv>
+          {arts.map((art: any, index: number) => (
+            <ImageWrapper
+              key={"artdiv" + index}
+            >
+              <Image
+                loading="lazy"
+                key={"art" + index}
+                src={art.src}
+                alt=""
+                layout="responsive"
+              />
+            </ImageWrapper>
+          ))}
+        </CardsDiv>
+      </IContainer>
+    </div>
   );
 }
+
+const ImageWrapper = styled.div`
+
+width: 200px; 
+padding: 10px; 
+background: white;
+
+@media (max-width: 672px) {
+  width: 160px; 
+}
+
+`;
 
 export const CardsWrapper = styled.section`
   display: flex;
@@ -227,27 +209,29 @@ export const Info = styled.div`
 const IContainer = styled(Container)`
   width: 100%;
   padding: 30px;
-  background: white;
   max-width: 100%;
-
-  @media (max-width: 600px) {
-    & {
-      // height: 150px;
-    }
-  }
+  background-size: contain;
 `;
 
 const CardsDiv = styled(Container)`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  text-align: center;
-  padding: 0;
-  justify-content: center;
+    display: flex;
+    flex-direction: column;
+    height: 700px;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    padding: 0;
+    justify-content: left;
+    width: max-content;
+
+    @media (max-width: 672px) {
+      height: 750px;
+    }
+    
 `;
 
 const BannerText = styled.h1`
-  color: black;
+  color: white;
   text-align: center;
   font-size: 2.5rem;
   @media (max-width: 600px) {
@@ -257,8 +241,3 @@ const BannerText = styled.h1`
   }
   margin: 30px 0;
 `;
-
-interface StyleProps {
-  bgColor?: string;
-  color?: string;
-}

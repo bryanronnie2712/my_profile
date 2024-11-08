@@ -36,13 +36,15 @@ import Cottage from "./gallery/cottage.jpg";
 import EdSheeran from "./gallery/edsheeran.jpg";
 import SerBronn from "./gallery/serbronn.jpg";
 import Stromae from "./gallery/stromae.jpg";
-
+import LastLeaf from "./gallery/lastleaf.jpg"
+import Wood from "./gallery/wood.jpeg";
 
 // Experience
 
 import AkilaCastings from "./akilacastings.jpeg";
 
 export {
+  Wood,
   Cottage,
   EdSheeran,
   SerBronn,
@@ -51,6 +53,7 @@ export {
   Friends,
   Pirate,
   Titanic,
+  LastLeaf,
   MusicImage,
   FullLogo,
   SmallScreenIcon,
