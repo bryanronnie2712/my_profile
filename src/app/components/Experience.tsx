@@ -33,17 +33,27 @@ const BannerText = styled.h1`
 `;
 
 const Div = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 30px;
-  padding: 0 40px;
+  // display: flex;
+  // flex-wrap: wrap;
+  // align-items: center;
+  // justify-content: center;
+  // gap: 30px;
+  // padding: 0 40px;
 
-  & > * {
-    flex: 1  50%;
-    min-width: 50%;
-  }
+  // & > * {
+  //   flex: 1  50%;
+  //   min-width: 50%;
+  // }
+
+
+      /* display: flex; */
+    flex-wrap: wrap;
+    /* align-items: revert; */
+    /* justify-content: left; */
+    gap: 30px;
+    /* padding: 0 40px; */
+    // left: -20vw;
+    position: relative;
 `
 
 const LeftText = styled.div`
@@ -78,7 +88,7 @@ const LeftText = styled.div`
 export default function Experience() {
   return (
     <IContainer>
-      <BannerText>Experience</BannerText>
+      <BannerText>Education & Experience</BannerText>
       <Div>
         <OutlinedTimeline/>
       </Div>
