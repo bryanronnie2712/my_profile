@@ -7,7 +7,7 @@ export const sampleData = [
     { id: 6, name: "Javascript", category: 1, radius: 15 },
     { id: 7, name: "Typescript", category: 1, radius: 30 },
     { id: 8, name: "PostgreSQL", category: 3, radius: 20 },
-    { id: 9, name: "FastAPI", category: 3, radius: 10 },
+    { id: 9, name: "FastAPI", category: 2, radius: 10 },
     { id: 10, name: "OpenEDX", category: 3, radius: 10 },
     { id: 11, name: "Python", category: 2, radius: 40 },
     { id: 12, name: "node.js", category: 2, radius: 10 },
@@ -20,4 +20,8 @@ export const sampleData = [
     { id: 19, name: "Git", category: 5, radius: 20 },
     { id: 20, name: "Linux", category: 5, radius: 20 },
     { id: 21, name: "C++", category: 2, radius: 10 },
+    { id: 22, name: "MongoDB", category: 3, radius: 10 },
+    { id: 23, name: "AngularJS", category: 1, radius: 7 },
+    { id: 23, name: "socket.io", category: 5, radius: 5 },
+    { id: 23, name: "WebRTC", category: 5, radius: 3 },
   ];

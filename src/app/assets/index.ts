@@ -42,6 +42,7 @@ import Wood from "./gallery/wood.jpeg";
 // Experience
 
 import AkilaCastings from "./akilacastings.jpeg";
+import AkilaCastings1 from "./akilacastings1.jpg";
 
 export {
   Wood,
@@ -50,6 +51,7 @@ export {
   SerBronn,
   Stromae,
   AkilaCastings,
+  AkilaCastings1,
   Friends,
   Pirate,
   Titanic,

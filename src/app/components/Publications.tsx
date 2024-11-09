@@ -46,15 +46,14 @@ const Div = styled.div`
 `
 
 const LeftText = styled.div`
-  font-size: 40px;
-  padding: 130px;
-  line-height: 65px;
-
+  font-size: 30px;
+      padding: 80px 50px 80px 70px;
+  line-height: 50px;
 
   @media (max-width: 1200px) {
     & {
       font-size: 30px;
-      padding: 80px;
+      padding: 80px 50px 80px 70px;
       line-height: 50px;
     }
   }
@@ -71,7 +70,25 @@ const LeftText = styled.div`
     flex: 1  50%;
     min-width: 50%;
   }
-`
+`;
+
+const PaperLinkDiv = styled.div`
+  font-size: 20px; 
+  line-height:30px;
+  margin-top:20px;
+
+  @media (max-width: 1200px) {
+    & {
+      font-size: 20px;
+    }
+  }
+
+  @media (max-width: 800px) {
+    & {
+      font-size: 16px;
+    }
+  }
+`;
 
 
 export default function Publications() {
@@ -79,8 +96,8 @@ export default function Publications() {
     <IContainer>
       <BannerText>Publication</BannerText>
       <Div>
-        <LeftText>Published a conference paper on the topic <b>&quot;Exploring the Role of Entropy in Music Classification&quot;</b> as a part of CCIS proceedings.</LeftText>
-        <Image src={SpringerBook} alt='Springer Book' style={{objectFit:"contain", minWidth: "260px", maxWidth:'330px', height: "auto"}}/>
+        <LeftText>Published a conference paper on the topic <b>&quot;Exploring the Role of Entropy in Music Classification&quot;</b> as a part of Springer CCIS series. <PaperLinkDiv>Paper Link: <a style={{ textDecoration: "underline", color:"blue", cursor:"pointer"}} onClick={(e) => window.open("https://link.springer.com/chapter/10.1007/978-3-031-58495-4_24")}>https://link.springer.com/chapter/10.1007/978-3-031-58495-4_24</a></PaperLinkDiv> </LeftText>
+        <Image src={SpringerBook} onClick={(e) => window.open("https://link.springer.com/chapter/10.1007/978-3-031-58495-4_24")} alt='Springer Book' style={{objectFit:"contain", minWidth: "260px", maxWidth:'330px', height: "auto",cursor:"pointer"}}/>
       </Div>
     </IContainer>
   );

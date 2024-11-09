@@ -7,6 +7,8 @@ import Image, { StaticImageData } from "next/image";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import {
+  AkilaCastings,
+  AkilaCastings1,
   Covid,
   Instagram,
   MusicImage,
@@ -58,7 +60,7 @@ const cards: Card[] = [
     color: "white",
     tags: [
       { text: "ReactJS", color: "black", bgColor: "cyan" },
-      { text: "NodeJS", color: "white", bgColor: "green" },
+      { text: "node.js", color: "white", bgColor: "green" },
       { text: "Render", color: "white", bgColor: "black" },
       { text: "Netlify", color: "teal", bgColor: "white" },
       { text: "Socket.io", color: "black", bgColor: "teal" },
@@ -67,10 +69,23 @@ const cards: Card[] = [
     url: "https://bryanronnie2712.github.io/brymeet-page/index.html",
   },
   {
+    title: "Client(AkilaCastings Pvt. Ltd.)",
+    description: "Developed & deployed a portfolio website for a foundry",
+    image: AkilaCastings1,
+    background: "repeating-radial-gradient(circle at -10% -10%, #012eff, #120cff 0.5px, #123aff 0.7px, #3601ff 4px)",
+    color: "white",
+    tags: [
+      { text: "HTML", color: "white", bgColor: "#da4c21" },
+      { text: "CSS", color: "white", bgColor: "#1e5da9" },
+      { text: "JS", color: "black", bgColor: "#edd61a" },
+    ],
+    url: "https://bryanronnie2712.github.io/brymeet-page/index.html",
+  },
+  {
     title: "Songs Entropy",
     description: "Research project - FastAPI",
     color: "black",
-    background: "repeating-radial-gradient(ellipse at -10% -10%, #f19f0b, #ffbc00 0.5px, #f7b25c 0.7px, #d5bf43 4px)",
+    background: "repeating-radial-gradient(ellipse at -10% -10%, #ffdfa4, #ecc963 0.5px, #ffe2ae 0.7px, #ffe595 4px)",
     image: MusicImage,
     tags: [
       { text: "FastAPI", color: "white", bgColor: "teal" },
@@ -86,10 +101,9 @@ const cards: Card[] = [
     background: "repeating-radial-gradient(ellipse at -10% -10%, #2b2b2b, #2f2f2f 0.5px, #063f34 0.7px, #341069 4px)",
     image: Covid,
     tags: [
-      { text: "AngularJS", color: "brown", bgColor: "blue" },
-      { text: "HTML", color: "#e44c25", bgColor: "blue" },
-      { text: "CSS", color: "#1572b7", bgColor: "blue" },
-      { text: "Javascript", color: "#f19f0b", bgColor: "blue" },
+      { text: "HTML", color: "white", bgColor: "#da4c21" },
+      { text: "CSS", color: "white", bgColor: "#1e5da9" },
+      { text: "JS", color: "black", bgColor: "#edd61a" },
     ],
     url: "https://bryanronnie2712.github.io/Covid19Tracker/index.html",
   },
@@ -99,8 +113,8 @@ const cards: Card[] = [
     color: "white",
     background: "repeating-radial-gradient(ellipse at -10% -10%, #2c731f, #056121 0.5px, #2f7b40 0.7px, #0e6b42 4px)",
     image: TextEditorImg,
-    tags: [{ text: "AngularJS", color: "brown", bgColor: "blue" }],
-    url: "https://bryanronnie2712.github.io/text-editor/index.html",
+    tags: [{ text: "AngularJS", color: "white", bgColor: "brown" }],
+    url: "https://akilacastings.com/",
   },
   {
     title: "Instagram clone",
@@ -109,9 +123,9 @@ const cards: Card[] = [
     image: Instagram,
     description: "Let's go social this time!",
     tags: [
-      { text: "ReactJS", color: "cyan", bgColor: "blue" },
-      { text: "NodeJS", color: "green", bgColor: "blue" },
-      { text: "Firebase", color: "orange", bgColor: "blue" },
+      { text: "ReactJS", color: "black", bgColor: "cyan" },
+      { text: "node.js", color: "white", bgColor: "green" },
+      { text: "Firebase", color: "black", bgColor: "orange" },
     ],
     url: "https://instagram-clone-4d25d.web.app/",
   },
