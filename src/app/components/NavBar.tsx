@@ -306,6 +306,7 @@ const GeminiSVG = styled.div``;
 
 export default function NavBar() {
   const API_Key = String(process.env.NEXT_PUBLIC_API_KEY_2);
+  console.log(API_Key);
 
   const handleOpen = () => {
     setDisplayNotification(true);

@@ -1,15 +1,15 @@
 import SpringerBook from "./springer-book.png";
 import FullLogo from "./FullLogo.png";
 import SmallLogo from "./logo.png";
-import Covid from "./covid.png";
+import Covid from "./covid.jpg";
 import LinkedInLogo from "./logo-linkedin-icon.png";
 import XingLogo from "./xing-logo.png";
 import PhoneLogo from "./phone-icon.png";
 
-import Instagram from "./insta.jpg";
-import TextEditorImg from "./textEditor.png";
-import VideoConferencing from "./video-conf.jpg";
-import MusicImage from "./musical-instruments.jpg";
+import Instagram from "./instagram.jpg";
+import TextEditorImg from "./text-editor.jpg";
+import VideoConferencing from "./video-conferencing-icon-free-vector.jpg";
+import MusicImage from "./instruments.png";
 // Tech Icons
 import JavaLogo from "./tech-icons/java.png";
 import SpringLogo from "./tech-icons/spring.png";

@@ -31,7 +31,7 @@ export default function Home() {
       <Projects/>
       <ArtGallery/>
       <Publications/>
-      <Experience/>
+      {/* <Experience/> */}
       <Footer/>
     </CustomPaper>
   );

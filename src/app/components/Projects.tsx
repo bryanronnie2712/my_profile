@@ -1,16 +1,14 @@
 "use client";
 
 import * as React from "react";
-import { AppBar, Container, ImageList, ImageListItem } from "@mui/material";
+import { Container } from "@mui/material";
 import styled from "styled-components";
-import { Box } from "@mui/system";
 import Image, { StaticImageData } from "next/image";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import {
   Covid,
   Instagram,
-  LinkedInLogo,
   MusicImage,
   TextEditorImg,
   VideoConferencing,
@@ -38,15 +36,17 @@ export const responsive = {
 interface Card {
   title: string;
   description: string;
-  bgColor: string;
   tags: Tag[];
   image: StaticImageData;
   url: string;
+  color: string;
+  background: string;
 }
 
 interface Tag {
   text: string;
   color: string;
+  bgColor: string;
 }
 
 const cards: Card[] = [
@@ -54,56 +54,66 @@ const cards: Card[] = [
     title: "BryMeet",
     description: "Web conferencing with screen-sharing built using webRTC",
     image: VideoConferencing,
-    bgColor: "blue",
+    background: "repeating-radial-gradient(circle at -10% -10%, #2b1616, #310045 0.5px, #2b063b 0.7px, #520f67 4px)",
+    color: "white",
     tags: [
-      { text: "ReactJS", color: "cyan" },
-      { text: "NodeJS", color: "green" },
+      { text: "ReactJS", color: "black", bgColor: "cyan" },
+      { text: "NodeJS", color: "white", bgColor: "green" },
+      { text: "Render", color: "white", bgColor: "black" },
+      { text: "Netlify", color: "teal", bgColor: "white" },
+      { text: "Socket.io", color: "black", bgColor: "teal" },
+      { text: "WebRTC", color: "black", bgColor: "royalblue" },
     ],
-    url: "https://www.linkedin.com/in/bryan-ronnie",
+    url: "https://bryanronnie2712.github.io/brymeet-page/index.html",
   },
   {
     title: "Songs Entropy",
     description: "Research project - FastAPI",
+    color: "black",
+    background: "repeating-radial-gradient(ellipse at -10% -10%, #f19f0b, #ffbc00 0.5px, #f7b25c 0.7px, #d5bf43 4px)",
     image: MusicImage,
-    bgColor: "blue",
     tags: [
-      { text: "ReactJS", color: "cyan" },
-      { text: "NodeJS", color: "green" },
+      { text: "FastAPI", color: "white", bgColor: "teal" },
+      { text: "SheetsAPI", color: "white", bgColor: "green" },
+      { text: "Tensorflow", color: "black", bgColor: "orange" },
     ],
-    url: "https://www.linkedin.com/in/bryan-ronnie",
+    url: "https://github.com/bryanronnie2712/songs-entropy",
   },
   {
     title: "Covid Tracker",
     description: "Daily Covid cases and deaths with chrome extension",
+    color: "white",
+    background: "repeating-radial-gradient(ellipse at -10% -10%, #2b2b2b, #2f2f2f 0.5px, #063f34 0.7px, #341069 4px)",
     image: Covid,
-    bgColor: "blue",
     tags: [
-      { text: "AngularJS", color: "brown" },
-      { text: "HTML", color: "#e44c25" },
-      { text: "CSS", color: "#1572b7" },
-      { text: "Javascript", color: "#f19f0b" },
+      { text: "AngularJS", color: "brown", bgColor: "blue" },
+      { text: "HTML", color: "#e44c25", bgColor: "blue" },
+      { text: "CSS", color: "#1572b7", bgColor: "blue" },
+      { text: "Javascript", color: "#f19f0b", bgColor: "blue" },
     ],
-    url: "https://www.linkedin.com/in/bryan-ronnie",
+    url: "https://bryanronnie2712.github.io/Covid19Tracker/index.html",
   },
   {
     title: "Text Editor",
     description: "A simple text editor with mostly used features.",
+    color: "white",
+    background: "repeating-radial-gradient(ellipse at -10% -10%, #2c731f, #056121 0.5px, #2f7b40 0.7px, #0e6b42 4px)",
     image: TextEditorImg,
-    bgColor: "brown",
-    tags: [{ text: "AngularJS", color: "brown" }],
-    url: "https://www.linkedin.com/in/bryan-ronnie",
+    tags: [{ text: "AngularJS", color: "brown", bgColor: "blue" }],
+    url: "https://bryanronnie2712.github.io/text-editor/index.html",
   },
   {
     title: "Instagram clone",
+    color: "black",
+    background: "repeating-radial-gradient(ellipse at -10% -10%, #ff7de4, #ec91f7 0.5px, #ff997a 0.7px, #ff7ef9 4px)",
     image: Instagram,
     description: "Let's go social this time!",
-    bgColor: "red",
     tags: [
-      { text: "ReactJS", color: "cyan" },
-      { text: "NodeJS", color: "green" },
-      { text: "Firebase", color: "orange" },
+      { text: "ReactJS", color: "cyan", bgColor: "blue" },
+      { text: "NodeJS", color: "green", bgColor: "blue" },
+      { text: "Firebase", color: "orange", bgColor: "blue" },
     ],
-    url: "https://www.linkedin.com/in/bryan-ronnie",
+    url: "https://instagram-clone-4d25d.web.app/",
   },
 ];
 
@@ -112,36 +122,26 @@ export default function Projects() {
     <IContainer sx={{ flexGrow: 1 }}>
       <BannerText>Projects</BannerText>
       <CardsDiv>
-        <Carousel autoPlay pauseOnHover showDots responsive={responsive}>
+        <Carousel pauseOnHover showDots responsive={responsive}>
           {cards.map((card: Card, i: number) => (
-            <Card key={"card" + i}>
-              <div style={{ height: 240, background: "red", width: "100%" }}>
+            <Card onClick={(e) => window.open(card.url)} $bg={card.background} key={"card" + i}>
+              <div style={{ height: 240, background: "white", width: "100%" }}>
                 <Image
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                  onClick={(e) => window.open(card.url)}
+                  style={{ width: "100%", height: "100%", objectFit: "contain" }}
                   src={card.image}
                   alt={""}
                 />
               </div>
-              <div
-                style={{
-                  height: 300,
-                  background: "white",
-                  width: "100%",
-                  padding: "20px",
-                }}
-              >
+              <CardDesc $bg={card.background} $color={card.color}>
                 <h1>{card.title}</h1>
                 <p>{card.description}</p>
 
-                <div className="tags">
+                <Tags>
                   {card.tags.map((tag: Tag, i: number) => (
-                    <div key={"tag" + i} className="tag">
-                      {tag.text}
-                    </div>
+                    <Tag $bgcolor={tag.bgColor} $color={tag.color} key={"tag" + i}>{tag.text}</Tag>
                   ))}
-                </div>
-              </div>
+                </Tags>
+              </CardDesc>
             </Card>
           ))}
         </Carousel>
@@ -149,6 +149,32 @@ export default function Projects() {
     </IContainer>
   );
 }
+
+export const CardDesc = styled.div<{$bg: string, $color: string}>`
+  color: ${({$color}) => $color};
+  padding: 20px;
+  // height: 300px;
+  width: 100%;
+  text-align:center;
+}
+`;
+
+export const Tag = styled.div<{$bgcolor: string, $color: string}>`
+  font-size: 0.75em;
+  background: ${({$bgcolor}) => $bgcolor};
+  color: ${({$color}) => $color};
+  border-radius: 0.3rem;
+  padding: 0 0.5em;
+  margin-right: 0.5em;
+  line-height: 1.5em;
+  margin-bottom: 0.5em;
+`;
+
+export const Tags = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
 
 export const CardsWrapper = styled.section`
   display: flex;
@@ -159,8 +185,10 @@ export const CardsWrapper = styled.section`
   margin: 0 auto;
 `;
 
-export const Card = styled.a`
+export const Card = styled.a<{$bg: string}>`
   box-shadow: 0px 0px 10px 0px #b7b7b7;
+  user-select: none;
+  cursor: pointer;
   height: 500px;
   margin: 10px;
   font-size: 1.5em;
@@ -170,9 +198,10 @@ export const Card = styled.a`
   position: relative;
   margin-bottom: 30px;
   overflow: hidden;
+  background: ${({$bg}) => $bg};
 
-  &:hover {
-    transform: rotate(0);
+  &:hover{
+    filter: drop-shadow(2px 4px 6px black);
   }
 
   h1 {
@@ -182,25 +211,8 @@ export const Card = styled.a`
 
   p {
     font-size: 0.75em;
-    margin-top: 0.5em;
-    line-height: 2em;
-  }
-
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .tags .tag {
-    font-size: 0.75em;
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 0.3rem;
-    padding: 0 0.5em;
-    margin-right: 0.5em;
-    line-height: 1.5em;
-    transition: all, var(--transition-time);
-    margin-bottom: 0.5em;
+    margin: 1em 0;
+    line-height: 1.3em;
   }
 
   .date {
@@ -223,7 +235,6 @@ export const Card = styled.a`
     left: -50%;
     top: -50%;
     z-index: -5;
-    transition: all, var(--transition-time);
     transition-timing-function: ease-in-out;
   }
 
