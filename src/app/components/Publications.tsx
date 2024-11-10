@@ -96,7 +96,7 @@ export default function Publications() {
     <IContainer>
       <BannerText>Publication</BannerText>
       <Div>
-        <LeftText>Published a conference paper on the topic <b>&quot;Exploring the Role of Entropy in Music Classification&quot;</b> as a part of Springer CCIS series. <PaperLinkDiv>Paper Link: <a style={{ textDecoration: "underline", color:"blue", cursor:"pointer"}} onClick={(e) => window.open("https://link.springer.com/chapter/10.1007/978-3-031-58495-4_24")}>https://link.springer.com/chapter/10.1007/978-3-031-58495-4_24</a></PaperLinkDiv> </LeftText>
+        <LeftText>Published a conference paper on the topic <b>&quot;Exploring the Role of Entropy in Music Classification&quot;</b> as a part of Springer CCIS series. <PaperLinkDiv>Paper Link: <a style={{ textDecoration: "underline", color:"blue", cursor:"pointer"}} onClick={(e) => window.open("https://link.springer.com/chapter/10.1007/978-3-031-58495-4_24")}>Click Here</a></PaperLinkDiv> </LeftText>
         <Image src={SpringerBook} onClick={(e) => window.open("https://link.springer.com/chapter/10.1007/978-3-031-58495-4_24")} alt='Springer Book' style={{objectFit:"contain", minWidth: "260px", maxWidth:'330px', height: "auto",cursor:"pointer"}}/>
       </Div>
     </IContainer>
