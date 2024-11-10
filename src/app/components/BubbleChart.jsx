@@ -68,7 +68,7 @@ const BubbleChart = ({ data }) => {
     .on("mouseover", function (event, d) {
       d3.select(this)
         .attr("stroke", "#000")          // Change border color
-        .attr("stroke-width", 3)         // Increase border width
+        .attr("stroke-width", 2)         // Increase border width
         .attr("fill", d3.rgb(color(d.data.category)).darker(1));  // Darken fill color
     })
     .on("mouseout", function (event, d) {
@@ -91,7 +91,7 @@ const BubbleChart = ({ data }) => {
         d3.select(this.parentNode).select("circle")  // Select parent circle
           .attr("stroke", "#000")                    // Change border color
           .attr("cursor", "pointer")                 // Change cursor style
-          .attr("stroke-width", 3)                   // Increase border width
+          .attr("stroke-width", 2)                   // Increase border width
           .attr("fill", d3.rgb(color(d.data.category)).darker(1));  // Darken fill color
       })
       .on("mouseout", function (event, d) {

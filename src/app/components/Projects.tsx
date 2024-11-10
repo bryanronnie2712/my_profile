@@ -284,7 +284,7 @@ export const Info = styled.div`
 
 const IContainer = styled(Container)`
   width: 100%;
-  padding: 20px;
+  padding: 20px 20px 100px 20px;
   background: white;
   max-width: 100%;
 
