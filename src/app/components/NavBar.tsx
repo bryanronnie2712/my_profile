@@ -308,9 +308,6 @@ const URLString = styled.a`
 const GeminiSVG = styled.div``;
 
 export default function NavBar() {
-  const API_Key = String(process.env.NEXT_PUBLIC_API_KEY_2);
-  // console.log(API_Key);
-
   const handleOpen = () => {
     setDisplayNotification(true);
   };
@@ -319,61 +316,66 @@ export default function NavBar() {
   const [language, setLanguage] = useState("");
   const [salutation, setSalutation] = useState("");
   const [openGeminiModal, setOpenGeminiModal] = useState(false);
-  const [displayNotification, setDisplayNotification] =
-    useState<boolean>(false);
+  const [displayNotification, setDisplayNotification] = useState<boolean>(false);
+  const [JD, setJD] = useState("");
+  const [modalInnerAnimation, setModalInnerAnimation] = useState("appear");
+  const [windowMode, setWindowMode] = useState(1);
+  const [tooltip5sec, setTooltip5sec] = useState(true);
 
-  useEffect(() => {
-    const getCountryAndLanguage = async () => {
-      try {
-        // Get the user's IP and country
-        const ipResponse = await fetch(
-          "https://ipinfo.io/json?token=" + API_Key
-        );
-        const ipData = await ipResponse.json();
-        const userCountry = ipData.country; // Country code, e.g., 'US'
+  setTimeout(() => setTooltip5sec(false), 8000);
 
-        // Get the languages for the country
-        const languageResponse = await fetch(
-          `https://restcountries.com/v3.1/alpha/${userCountry}`
-        );
-        const languageData = await languageResponse.json();
-        const languages = languageData[0].languages; // Object with language codes and names
-        setCountry(languageData[0].name.common);
+  // useEffect(() => {
+  //   const getCountryAndLanguage = async () => {
+  //     try {
+  //       // Get the user's IP and country
+  //       const ipResponse = await fetch(
+  //         "https://ipinfo.io/json?token=" + API_Key
+  //       );
+  //       const ipData = await ipResponse.json();
+  //       const userCountry = ipData.country; // Country code, e.g., 'US'
 
-        // Get the most popular language (this assumes the first language is the most popular)
-        const popularLanguage = String(Object.values(languages)[0]);
-        setLanguage(popularLanguage);
+  //       // Get the languages for the country
+  //       const languageResponse = await fetch(
+  //         `https://restcountries.com/v3.1/alpha/${userCountry}`
+  //       );
+  //       const languageData = await languageResponse.json();
+  //       const languages = languageData[0].languages; // Object with language codes and names
+  //       setCountry(languageData[0].name.common);
 
-        const llmResponse = await runPrompt(
-          "Give a short salutation for the provided country. Take the local time of the capital city into consideration. No explanation needed, give purely the salutation preferably with local language. If no language, use default country = Earth, language = English. User-Given COUNTRY:" +
-            languageData[0].name.common
-        );
+  //       // Get the most popular language (this assumes the first language is the most popular)
+  //       const popularLanguage = String(Object.values(languages)[0]);
+  //       setLanguage(popularLanguage);
 
-        if (llmResponse) {
-          setSalutation(llmResponse);
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+  //       const llmResponse = await runPrompt(
+  //         "Give a short salutation for the provided country. Take the local time of the capital city into consideration. No explanation needed, give purely the salutation preferably with local language. If no language, use default country = Earth, language = English. User-Given COUNTRY:" +
+  //           languageData[0].name.common
+  //       );
 
-    getCountryAndLanguage().then(() => {
-      handleOpen();
-    });
-  }, []);
+  //       if (llmResponse) {
+  //         setSalutation(llmResponse);
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //     }
+  //   };
 
-  const Message = (
-    <div>
-      If you&apos;re from {country}, {salutation}! My new site will be ready by
-      Nov 16. For now, please check{" "}
-      <URLString href="https://my-profile-1ubas3rts-bryanronnie2712.vercel.app/">
-        my old portfolio{" "}
-        <div style={{ height: "1em", width: "1em", display: "inline-block" }}>
-          {openInWindowSVG}
-        </div>
-      </URLString>
-    </div>
-  );
+  //   getCountryAndLanguage().then(() => {
+  //     handleOpen();
+  //   });
+  // }, []);
+
+  // const Message = (
+  //   <div>
+  //     If you&apos;re from {country}, {salutation}! My new site will be ready by
+  //     Nov 16. For now, please check{" "}
+  //     <URLString href="https://my-profile-1ubas3rts-bryanronnie2712.vercel.app/">
+  //       my old portfolio{" "}
+  //       <div style={{ height: "1em", width: "1em", display: "inline-block" }}>
+  //         {openInWindowSVG}
+  //       </div>
+  //     </URLString>
+  //   </div>
+  // );
 
   ////////////////////////////////////////// TO DO
   const [resumeMatchDetails, setResumeMatchDetails] = useState<{
@@ -488,13 +490,6 @@ export default function NavBar() {
     }
   };
 
-  const [JD, setJD] = useState("");
-  const [modalInnerAnimation, setModalInnerAnimation] = useState("appear");
-  const [windowMode, setWindowMode] = useState(1);
-  const [tooltip5sec, setTooltip5sec] = useState(true);
-
-  setTimeout(() => setTooltip5sec(false), 8000);
-
   const style = {
     position: "absolute",
     top: "50%",
@@ -534,7 +529,7 @@ export default function NavBar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <CustomNav position="fixed">
-        {salutation !== "" && (
+        {/* {salutation !== "" && (
           <div
             style={{
               display: "flex",
@@ -562,7 +557,7 @@ export default function NavBar() {
               </div>
             )}
           </div>
-        )}
+        )} */}
 
         <Toolbar>
           <Typography
@@ -579,25 +574,35 @@ export default function NavBar() {
             My Portfolio
           </Typography>
 
-          <Tooltip componentsProps={{
-      tooltip: {
-        sx: {
-          backgroundColor: 'blue',     // Tooltip background color
-          color: '#fff',               // Text color
-          fontSize: '1rem',
-          padding: '10px 15px',
-          borderRadius: '8px',
-          boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.2)',
-          fontFamily: "inherit",
-          backdropFilter: "saturate(150%) blur(15px)",
-        },
-      },
-      arrow: {
-        sx: {
-          color: 'blue',               // Arrow color to match background
-        },
-      },
-    }} title={<p style={{textAlign: "center",background:"#0071e3", fontSize: 14}}>Check out my latest feature: AI Resumé matching + questions</p>} arrow placement="bottom" open={tooltip5sec} >
+          <Tooltip
+            componentsProps={{
+              tooltip: {
+                sx: {
+                  backgroundColor: "blue", // Tooltip background color
+                  color: "#fff", // Text color
+                  fontSize: "1rem",
+                  padding: "10px 15px",
+                  borderRadius: "8px",
+                  boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.2)",
+                  fontFamily: "inherit",
+                  backdropFilter: "saturate(150%) blur(15px)",
+                },
+              },
+              arrow: {
+                sx: {
+                  color: "blue", // Arrow color to match background
+                },
+              },
+            }}
+            title={
+              <p style={{ textAlign: "center", fontSize: 14 }}>
+                Check out my latest feature: AI Resumé matching + questions
+              </p>
+            }
+            arrow
+            placement="bottom"
+            open={tooltip5sec}
+          >
             <GeminiButton
               onClick={() => {
                 setOpenGeminiModal(true);
@@ -755,7 +760,8 @@ export default function NavBar() {
                           margin: "5% 10% 0 10%",
                         }}
                       >
-                        {resumeMatchDetails?.pros && resumeMatchDetails?.pros?.length > 0 ? (
+                        {resumeMatchDetails?.pros &&
+                        resumeMatchDetails?.pros?.length > 0 ? (
                           <>
                             <h3 style={{ lineHeight: 2 }}>Pros👍:</h3>
                             <ul>
@@ -788,7 +794,8 @@ export default function NavBar() {
                           margin: "5% 10% 0 10%",
                         }}
                       >
-                        {resumeMatchDetails?.cons && resumeMatchDetails?.cons?.length > 0 ? (
+                        {resumeMatchDetails?.cons &&
+                        resumeMatchDetails?.cons?.length > 0 ? (
                           <>
                             <h3 style={{ lineHeight: 2 }}>Cons👎:</h3>
                             <ul>
