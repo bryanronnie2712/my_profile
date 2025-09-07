@@ -79,7 +79,7 @@ const cards: Card[] = [
       { text: "CSS", color: "white", bgColor: "#1e5da9" },
       { text: "JS", color: "black", bgColor: "#edd61a" },
     ],
-    url: "https://bryanronnie2712.github.io/brymeet-page/index.html",
+    url: "https://akilacastings.com/",
   },
   {
     title: "Songs Entropy",
@@ -107,15 +107,15 @@ const cards: Card[] = [
     ],
     url: "https://bryanronnie2712.github.io/Covid19Tracker/index.html",
   },
-  {
-    title: "Text Editor",
-    description: "A simple text editor with mostly used features.",
-    color: "white",
-    background: "repeating-radial-gradient(ellipse at -10% -10%, #2c731f, #056121 0.5px, #2f7b40 0.7px, #0e6b42 4px)",
-    image: TextEditorImg,
-    tags: [{ text: "AngularJS", color: "white", bgColor: "brown" }],
-    url: "https://akilacastings.com/",
-  },
+  // {
+  //   title: "Text Editor",
+  //   description: "A simple text editor with mostly used features.",
+  //   color: "white",
+  //   background: "repeating-radial-gradient(ellipse at -10% -10%, #2c731f, #056121 0.5px, #2f7b40 0.7px, #0e6b42 4px)",
+  //   image: TextEditorImg,
+  //   tags: [{ text: "AngularJS", color: "white", bgColor: "brown" }],
+  //   url: "https://akilacastings.com/",
+  // },
   {
     title: "Instagram clone",
     color: "black",
