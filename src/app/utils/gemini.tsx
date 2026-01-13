@@ -4,7 +4,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 // Access your API key as an environment variable (see "Set up your API key" above)
 const API_Key = String(process.env.NEXT_PUBLIC_API_KEY)
 const genAI = new GoogleGenerativeAI(API_Key);
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
+const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash"});
 
 export const runPrompt = async (query: string) => {
   const prompt = query || "return no query given error"
