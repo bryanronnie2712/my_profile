@@ -14,6 +14,7 @@ import {
   MusicImage,
   TextEditorImg,
   VideoConferencing,
+  Splitz
 } from "../assets";
 
 export const responsive = {
@@ -52,6 +53,20 @@ interface Tag {
 }
 
 const cards: Card[] = [
+  {
+    title: "Splitz",
+    description: "Split instacart expenses with ease",
+    image: Splitz,
+    background: "repeating-radial-gradient(circle at -10% -10%, #6bf027, #93dc2d 0.5px, #75e506 0.7px, #38d9b3 4px)",
+    color: "white",
+    tags: [
+      { text: "ReactJS", color: "black", bgColor: "cyan" },
+      { text: "FastAPI", color: "white", bgColor: "teal" },
+      { text: "Vercel", color: "black", bgColor: "grey" },
+
+    ],
+    url: "https://splitz-ui.vercel.app/",
+  },
   {
     title: "BryMeet",
     description: "Web conferencing with screen-sharing built using webRTC",

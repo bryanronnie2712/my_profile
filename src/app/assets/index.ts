@@ -9,6 +9,7 @@ import PhoneLogo from "./phone-icon.png";
 import Instagram from "./instagram.jpg";
 import TextEditorImg from "./text-editor.jpg";
 import VideoConferencing from "./video-conferencing-icon-free-vector.jpg";
+import Splitz from "./splitz.png";
 import MusicImage from "./instruments.png";
 // Tech Icons
 import JavaLogo from "./tech-icons/java.png";
@@ -63,6 +64,7 @@ export {
   BackArrow,
   SpringerBook,
   VideoConferencing,
+  Splitz,
   PostgreSQLLogo,
   GCPLogo,
   ReactLogo,
