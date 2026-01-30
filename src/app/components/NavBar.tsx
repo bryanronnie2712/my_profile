@@ -500,59 +500,56 @@ The LLM's sole task is to function as an intelligent interviewer-facing knowledg
 
     Reference Documents:
     
-    Resume:
     Bryan Ronnie Jayasingh
-    M.Eng ECE (Co-op) at UWaterloo (Looking for 4/8-month co-op in Software/AI)
-    +1 647-883-3139   • brjayasi@uwaterloo.ca   • github.com/bryanronnie   • linkedin.com/in/bryan-ronnie
+    M.Eng ECE(Co-op) at UWaterloo | Software(FullStack & AI) | Open to 8-month Co-op
+    +1 647-883-3139       • brjayasi@uwaterloo.ca       • github.com/bryanronnie       • linkedin.com/in/bryan-ronnie
+    SKILLS_________________________________________________________________________________________
+    Code                 React, Typescript, HTML/CSS/JS, Python (FastAPI), Java, Node.js, GraphQL, PostgreSQL
+    Infra                  Linux, Git, Google Cloud Platform, Vercel, Netlify, Kubernetes, Gemini AI, Ollama
+    Certification    GCP Associate Cloud Engineer
+    Languages       English, French(A2-eq), Tamil(Native)
+
     WORK EXPERIENCE___________________________________________________________________________
     Verizon Communications Inc.                                                                                                Hyderabad & Chennai, India
-    AI & Data Fullstack Engineer II (Full Time)                                                                                                  Dec 2023 ‑ Aug 2025
-    Designed and developed data-driven applications for Verizon Business(VBG) and Consumer(VCG) Groups.
-    Prompted and developed applications for Generative AI use cases using Verizon GenAI Services(VEGAS).
+    Fullstack Engineer II (AI)                                                                                                                                  Dec 2023 - Aug 2025
+    Built and shipped data-driven applications for Verizon Business(VBG) and Consumer(VCG) Groups.
+    Designed and built GenAI-powered applications using Verizon's internal LLM platform (VEGAS).
     Acted as a production deployment support person-of-contact, ensuring the smooth delivery of applications.
-    Skills: ReactJS, Node.js, Java Springboot, Microservices, PostgreSQL, GraphQL
+    Tech: ReactJS, Node.js, FastAPI, Java Springboot, d3.js, PostgreSQL, GraphQL, Kubernetes
 
-    Fullstack Engineer I (Full Time)                                                                                                                     July 2022 ‑ Dec 2023
+    Fullstack Engineer I                                                                                                                                          July 2022 - Dec 2023
     Implemented near-real-time inputs for retail sales scenarios by GraphQL polling for better analysis & prediction.
     Converted backend vendor inputs in sales to reusable dynamic code, reducing package size by around 30%.
 
-    Student Intern (Part-Time)                                                                                                                             Feb 2022 ‑ June 2022
-    Contributing to the development from week 1 on elementary aspects, like the design of the web applications.
+    Student Intern                                                                                                                                                    Feb 2022 - June 2022
+    Contributed from day one, fixing UI bugs & creating chart widgets.
     Created a charts dashboard using d3.js for postpaid analytics at the end of the internship.
 
     Akila Castings Private Ltd.                                                                                                                              Remote, India
-    Web Development Intern (Part-Time)                                                                                                          May 2021 ‑ July 2021
+    Web Development Intern (Part-Time)                                                                                                         May 2021 - July 2021
     Reclaimed administrator rights to the company's domain.
     Developed and deployed the company's website (www.akilacastings.com)
-    Skills: Domains, SSL, HTML/CSS/JS.
+    Tech: Domains, SSL, HTML/CSS/JS.
 
     EDUCATION____________________________________________________________________________________
-    University of Waterloo                                                                                                                           Waterloo, Canada
-    Master Of Engineering - Electrical and Computer Engineering(Co-op)                       Sep 2025 ‑ Apr 2027 (Expected)
-    Coursework includes ECE655 - Protocols, Software and Issues in Mobile Systems, ECE750 - Scalable Computer System Design, BE602 - Data Analysis and Management
-    CGPA - 4.00
+    University of Waterloo                                                                                                                            Waterloo, Canada
+    Master Of Engineering - Electrical and Computer Engineering(Co-op)                      Sep 2025 - Apr 2027 (Expected)
+    CGPA - 4.00, Coursework includes ECE655 - Protocols, Software and Issues in Mobile Systems, ECE750 - Scalable Computer System Design, BE602 - Data Analysis and Management
 
     Siva Subramaniya Nadar College Of Engineering                                                                                       Chennai, India
-    Bachelor of Technology - Information Technology                                                                                 Aug 2018 ‑ May 2022
+    Bachelor of Technology - Information Technology                                                                                Aug 2018 - May 2022
     Graduated with First Class Distinction (91% GPA in the last two years)
     Active member of the College Coding Club(SSNCE) and the National Service Scheme(NSS)
 
-    SKILLS & INTERESTS__________________________________________________________________________
-    Coding           Python, FastAPI, HTML/CSS/JS, Typescript, React, Node.js, GraphQL, PostgreSQL, Appscript
-    Dev Tools      VS Code, IntelliJ, Git, GCP, Vercel, Netlify, Postman, PGAdmin, Linux 
-    Certification  GCP Associate Cloud Engineer
-    Languages    Tamil(Native), English, French(A2-eq)
-    Hobbies         Music, Languages, Pencil Sketch, Gaming
-
     PERSONAL PROJECTS________________________________________________________________________
     Portfolio Link - Built using NextJS - https://bryanronnie.vercel.app   
-    Splitz - Utilising EasyOCR & Nvidia NIM Llama & Nemotron Vision Models to help split expenses between roomies with ease, with receipt scanning & HST suggestions based on Ontario Tax Code. Tech Stack: FastAPI, easyocr, NIM Link: https://splitz-ui.vercel.app (In development)
+    Splitz - Utilising EasyOCR & Nemotron Vision Model to help split expenses between roomies with ease, with receipt scanning & HST suggestions based on Ontario Tax Code. Tech Stack: FastAPI, easyocr, Nvidia NIM 
+    Link: https://splitz-ui.vercel.app (In development)
     Aira Tasks - Helps users overcome procrastination by organising tasks, scheduling them automatically, supporting healthier daily habits, sending hourly check-ins, and providing routes to arrive on time. Tech Stack: Google Apps Script, Google Tasks, Google Calendar, Google Maps, Gemini API, Telegram API.
 
     PUBLICATIONS________________________________________________________________________________
-    Exploring the Role of Entropy in Music Classification ‑ Second International Conference On Speech and Language Technologies for Low‑Resource Languages, December 6-8, 2023 (spelll.org) 
+    Exploring the Role of Entropy in Music Classification - Conducted a study on entropy-based music classification, leveraging Shannon entropy and KL divergence with Random Forests to achieve 82% accuracy across multilingual datasets. Published Paper link - https://link.springer.com/chapter/10.1007/978-3-031-58495-4_24
 
-    Published Paper link - https://link.springer.com/chapter/10.1007/978-3-031-58495-4_24
 
 
       QUESTION: ${query}
