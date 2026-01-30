@@ -30,7 +30,7 @@ import Carousel from "react-multi-carousel";
 import DonutChart from "../DonutChart";
 import Tooltip from "@mui/material/Tooltip";
 import { CustomNav, IButton, NotificationBar, URLString, GeminiButton, GeminiSVG, GeminiButton1, Loader, RowEndFlex, StyledTextarea, TextareaAutosize1, QuestionDiv, AnswerDiv, ModalHeader, CloseIconDiv, FullscreenIconDiv, ModalTitle  } from "./styles";
-import instructions from "./llm_instructions.txt";
+  import { llm_instructions } from "./llm_instructions";
 
 // import BryanLogo from '../favicon.png';
 const openInWindowSVG = (
@@ -87,8 +87,10 @@ export default function NavBar() {
 
   const matchResumePrompt = async (query: string) => {
     setIsLoading(true);
-
-    const LLMInput = `${instructions} ${query}`;
+    
+    
+    const LLMInput = `${llm_instructions} ${query}
+`;
     try {
       const llmResponse = await runPrompt(LLMInput);
       // Extract the JSON-like content within the curly braces

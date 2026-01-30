@@ -1,5 +1,5 @@
-
-      Refer my information as a resume, biography, etc & answer the questions in the first-person. 
+export const llm_instructions = `
+      "Refer my information as a resume, biography, etc & answer the questions in the first-person. 
       Always the first character of the answer should be "{" and last be "}"
 
       System Instructions for the LLM (Interview Assistant Bot)
@@ -138,4 +138,4 @@
       PUBLICATIONS:
       Exploring the Role of Entropy in Music Classification - Conducted a study on entropy-based music classification, leveraging Shannon entropy and KL divergence with Random Forests to achieve 82% accuracy across multilingual datasets. Published Paper link - https://link.springer.com/chapter/10.1007/978-3-031-58495-4_24
 
-      QUESTION:
+      QUESTION:`
