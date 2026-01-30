@@ -8,8 +8,10 @@ import { LinkedInLogo, PhoneLogo, SpringerBook, XingLogo } from '../assets';
 
 const IContainer = styled(Container)`
   background: black;
-  max-width: 100%;
-  padding: 40px;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 40px !important;
   color: white;
   text-align: center;
 

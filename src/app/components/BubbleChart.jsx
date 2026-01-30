@@ -109,8 +109,8 @@ const BubbleChart = ({ data }) => {
     node.append("title").text((d) => d.data.name);
 
     // Intro animation: float out from center, expand bubbles, fade labels
-    const baseDelay = 120;
-    const t = d3.transition().duration(1100).ease(d3.easeBackOut.overshoot(1.6));
+    const baseDelay = 50; // Reduced from 120ms for faster reveal
+    const t = d3.transition().duration(900).ease(d3.easeBackOut.overshoot(1.4)); // Reduced duration and overshoot
 
     node
       .transition(t)
@@ -120,13 +120,13 @@ const BubbleChart = ({ data }) => {
 
     circles
       .transition(t)
-      .delay((d, i) => i * baseDelay + 100)
+      .delay((d, i) => i * baseDelay + 50) // Reduced delay
       .attr("r", d => d.r);
 
     labels
       .transition()
-      .delay((d, i) => i * baseDelay + 450)
-      .duration(600)
+      .delay((d, i) => i * baseDelay + 300) // Reduced delay
+      .duration(500)
       .ease(d3.easeCubicOut)
       .style("opacity", 1);
 

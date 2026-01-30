@@ -5,8 +5,9 @@ import Image from "next/image";
 const CustomNav = styled(AppBar)`
   border: none;
   border-bottom: 2px solid rgba(80, 80, 80, 0.4);
-  background: linear-gradient(#000000c7, #272727a6);
-  backdrop-filter: saturate(65%) blur(5px);
+  background: linear-gradient(#000000c7, #272727a6) !important;
+  backdrop-filter: saturate(65%) blur(5px) !important;
+  -webkit-backdrop-filter: saturate(65%) blur(5px) !important;
 `;
 
 const IButton = styled(Button)`

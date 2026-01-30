@@ -22,6 +22,8 @@ const LoaderContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 20px;
+  width: 100%;
+  height: 100%;
 `;
 
 const SpinningLogo = styled(Image)`

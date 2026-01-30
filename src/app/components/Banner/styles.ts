@@ -3,11 +3,12 @@ import { Container } from "@mui/material";
 import styled from "styled-components";
 
 const IContainer = styled(Container)`
-  width: auto;
-  max-width: inherit;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
   background: black;
   height: auto;
-  padding: 0;
   align-items: center;
   display: flex;
   justify-content: center;

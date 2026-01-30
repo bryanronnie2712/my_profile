@@ -144,7 +144,7 @@ export default function NavBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <CustomNav position="fixed">
+      <CustomNav position="fixed" color="transparent" elevation={0}>
         <Toolbar>
           <Typography
             color={"transparent"}
