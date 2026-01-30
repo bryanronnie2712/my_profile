@@ -14,11 +14,11 @@ const IContainer = styled(Container)`
   justify-content: center;
   position: relative;
   overflow: hidden;
-  height: 400px;
+  height: 500px;
 
   @media (max-width: 600px) {
     & {
-      height: 250px;
+      height: 300px;
       padding-top: 30px;
     }
   }
@@ -85,6 +85,15 @@ const IContainer = styled(Container)`
   }
 `;
 
+const BannerContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  z-index: 1;
+  padding: 0 20px;
+`;
+
 const BannerText = styled.h1`
   text-align: center;
   font-size: 3.7em;
@@ -119,4 +128,25 @@ const BannerText = styled.h1`
   }
 `;
 
-export { IContainer, BannerText };
+const BannerSubtext = styled.p`
+  text-align: center;
+  font-size: 1.25em;
+  font-weight: 400;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.02em;
+  line-height: 1.6;
+  z-index: 1;
+  animation: text-appear 0.8s ease-in-out 0.3s forwards;
+  opacity: 0;
+  
+  @media (max-width: 768px) {
+    font-size: 1.1em;
+  }
+  
+  @media (max-width: 600px) {
+    font-size: 0.95em;
+  }
+`;
+
+export { IContainer, BannerText, BannerSubtext, BannerContent };

@@ -10,7 +10,7 @@ interface LoaderProps {
 export default function Loader({ size = 200, text }: LoaderProps) {
   return (
     <LoaderContainer>
-      <SpinningLogo src={FullLogo} alt="Loading..." width={size} height={size} />
+      <SpinningLogo src={FullLogo} alt="Loading..." width={size} height={size} priority />
       {text && <LoaderText>{text}</LoaderText>}
     </LoaderContainer>
   );
@@ -27,7 +27,8 @@ const LoaderContainer = styled.div`
 `;
 
 const SpinningLogo = styled(Image)`
-  animation: rotate 1.5s cubic-bezier(1, 0, 0, 1) infinite;
+  opacity: 0;
+  animation: rotate 1.5s cubic-bezier(1, 0, 0, 1) infinite, fadeIn 500ms ease-out forwards;
   filter: drop-shadow(0px 0px 0.3px goldenrod);
 
   @keyframes rotate {
@@ -36,6 +37,15 @@ const SpinningLogo = styled(Image)`
     }
     100% {
       transform: rotate(360deg);
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
     }
   }
 `;

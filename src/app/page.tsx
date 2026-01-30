@@ -63,7 +63,7 @@ export default function Home() {
   if (isLoading) {
     return (
       <LoaderOverlay>
-        <Loader size={250} text="Welcome to my portfolio" />
+        <Loader size={250} text="Welcome to my portfolio!" />
       </LoaderOverlay>
     );
   }
