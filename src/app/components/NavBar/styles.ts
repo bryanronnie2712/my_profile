@@ -292,8 +292,8 @@ const StyledTextarea = styled.textarea<{ $windowMode: number }>`
 `;
 
 const TextareaAutosize1 = styled(TextareaAutosize).attrs({
-  minRows: 4, // Ensures that the textarea starts with a single row
-  maxRows: undefined, // Disables the auto-resizing beyond this point
+  minRows: 4,
+  maxRows: undefined,
 })<{ $windowMode: number }>`
   background: white;
   color: black;
@@ -302,12 +302,13 @@ const TextareaAutosize1 = styled(TextareaAutosize).attrs({
   width: 100%;
   margin-top: 10px;
   padding: 10px;
-  min-height: ${({ $windowMode }) => (!$windowMode ? "65vh" : "auto")};
+  height: ${({ $windowMode }) => (!$windowMode ? "65vh" : "200px")};
   max-height: 65vh;
   border-radius: 8px;
   transition: all 0.7s;
-  overflow-y: auto; // Use 'auto' to show scroll only when content exceeds max height
-  resize: none; // Prevents resizing in case of auto resizing
+  overflow-y: scroll !important;
+  resize: none;
+  border: 1px solid #ccc;
 `;
 
 const QuestionDiv = styled.div<{ $animation: string }>`

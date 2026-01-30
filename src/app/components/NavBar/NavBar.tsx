@@ -33,43 +33,44 @@ import { CustomNav, IButton, NotificationBar, URLString, GeminiButton, GeminiSVG
   import { llm_instructions } from "./llm_instructions";
 
 // import BryanLogo from '../favicon.png';
-const openInWindowSVG = (
-  <svg
-    viewBox="0 0 18 18"
-    xmlns="http://www.w3.org/2000/svg"
-    mirror-in-rtl="true"
-    fill="#000000"
-  >
-    <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-    <g
-      id="SVGRepo_tracerCarrier"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    ></g>
-    <g id="SVGRepo_iconCarrier">
-      {" "}
-      <path
-        fill="#494c4e"
-        d="M12.1.6a.944.944 0 0 0 .2 1.04l1.352 1.353L10.28 6.37a.956.956 0 0 0 1.35 1.35l3.382-3.38 1.352 1.352a.944.944 0 0 0 1.04.2.958.958 0 0 0 .596-.875V.96a.964.964 0 0 0-.96-.96h-4.057a.958.958 0 0 0-.883.6z"
-      ></path>{" "}
-      <path
-        fill="#494c4e"
-        d="M14 11v5a2.006 2.006 0 0 1-2 2H2a2.006 2.006 0 0 1-2-2V6a2.006 2.006 0 0 1 2-2h5a1 1 0 0 1 0 2H2v10h10v-5a1 1 0 0 1 2 0z"
-      ></path>{" "}
-    </g>
-  </svg>
-);
+// const openInWindowSVG = (
+//   <svg
+//     viewBox="0 0 18 18"
+//     xmlns="http://www.w3.org/2000/svg"
+//     mirror-in-rtl="true"
+//     fill="#000000"
+//   >
+//     <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+//     <g
+//       id="SVGRepo_tracerCarrier"
+//       strokeLinecap="round"
+//       strokeLinejoin="round"
+//     ></g>
+//     <g id="SVGRepo_iconCarrier">
+//       {" "}
+//       <path
+//         fill="#494c4e"
+//         d="M12.1.6a.944.944 0 0 0 .2 1.04l1.352 1.353L10.28 6.37a.956.956 0 0 0 1.35 1.35l3.382-3.38 1.352 1.352a.944.944 0 0 0 1.04.2.958.958 0 0 0 .596-.875V.96a.964.964 0 0 0-.96-.96h-4.057a.958.958 0 0 0-.883.6z"
+//       ></path>{" "}
+//       <path
+//         fill="#494c4e"
+//         d="M14 11v5a2.006 2.006 0 0 1-2 2H2a2.006 2.006 0 0 1-2-2V6a2.006 2.006 0 0 1 2-2h5a1 1 0 0 1 0 2H2v10h10v-5a1 1 0 0 1 2 0z"
+//       ></path>{" "}
+//     </g>
+//   </svg>
+// );
 
 export default function NavBar() {
-  const handleOpen = () => {
-    setDisplayNotification(true);
-  };
+  // const handleOpen = () => {
+  //   setDisplayNotification(true);
+  // };
 
-  const [country, setCountry] = useState("");
-  const [language, setLanguage] = useState("");
-  const [salutation, setSalutation] = useState("");
+  // const [country, setCountry] = useState("");
+  // const [language, setLanguage] = useState("");
+  // const [displayNotification, setDisplayNotification] = useState<boolean>(false);
+  // const [salutation, setSalutation] = useState("");
+
   const [openGeminiModal, setOpenGeminiModal] = useState(false);
-  const [displayNotification, setDisplayNotification] = useState<boolean>(false);
   const [JD, setJD] = useState("");
   const [modalInnerAnimation, setModalInnerAnimation] = useState("appear");
   const [windowMode, setWindowMode] = useState(1);
@@ -87,15 +88,12 @@ export default function NavBar() {
 
   const matchResumePrompt = async (query: string) => {
     setIsLoading(true);
-    
-    
-    const LLMInput = `${llm_instructions} ${query}
-`;
+    const LLMInput = `${llm_instructions} ${query}`;
     try {
       const llmResponse = await runPrompt(LLMInput);
       // Extract the JSON-like content within the curly braces
       const extracted = llmResponse.match(/\{.*\}/)?.[0] || "";
-      console.log("resumeMatchDetails", extracted);
+      // console.log("resumeMatchDetails", extracted);
       setResumeMatchDetails(JSON.parse(extracted));
       setIsLoading(false);
     } catch {
