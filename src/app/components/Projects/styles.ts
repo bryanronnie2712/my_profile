@@ -152,4 +152,5 @@ const BannerText = styled.h1`
   }
   margin: 30px 0;
 `;
+
 export { IContainer, CardsDiv, BannerText };
