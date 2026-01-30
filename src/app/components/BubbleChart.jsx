@@ -44,6 +44,9 @@ const BubbleChart = ({ data }) => {
     // Adjust the SVG height based on the calculated bounds
     const adjustedHeight = yMax - yMin;
 
+    const centerX = width / 2;
+    const centerY = (yMin + yMax) / 2;
+
     // Create groups for each bubble
     const node = svg
       .attr("width", width)
@@ -53,39 +56,41 @@ const BubbleChart = ({ data }) => {
       .data(nodes)
       .enter()
       .append("g")
-      .attr("transform", d => `translate(${d.x},${d.y})`)
-      .attr("class", "node");
+      .attr("transform", `translate(${centerX},${centerY})`)
+      .attr("class", "node")
+      .style("opacity", 0);
 
     // Append circles to each group
-    node.append("circle")
-    .attr("id", d => d.id)
-    .attr("r", d => d.r)
-    .style("fill", d => color(d.data.category))
-    .attr("fill", (d) => color(d.data.category))
-    .attr("stroke", "#fff")
-    .attr("stroke-width", 1.5)
-    .attr("cursor", "pointer")          // Change border color
-    .on("mouseover", function (event, d) {
-      d3.select(this)
-        .attr("stroke", "#000")          // Change border color
-        .attr("stroke-width", 2)         // Increase border width
-        .attr("fill", d3.rgb(color(d.data.category)).darker(1));  // Darken fill color
-    })
-    .on("mouseout", function (event, d) {
-      d3.select(this)
-        .attr("stroke", "#fff")          // Reset border color
-        .attr("stroke-width", 1.5)       // Reset border width
-        .attr("fill", color(d.data.category)); // Reset fill color;
-    });
+    const circles = node.append("circle")
+      .attr("id", d => d.id)
+      .attr("r", 0)
+      .style("fill", d => color(d.data.category))
+      .attr("fill", (d) => color(d.data.category))
+      .attr("stroke", "#fff")
+      .attr("stroke-width", 1.5)
+      .attr("cursor", "pointer")          // Change border color
+      .on("mouseover", function (event, d) {
+        d3.select(this)
+          .attr("stroke", "#000")          // Change border color
+          .attr("stroke-width", 2)         // Increase border width
+          .attr("fill", d3.rgb(color(d.data.category)).darker(1));  // Darken fill color
+      })
+      .on("mouseout", function (event, d) {
+        d3.select(this)
+          .attr("stroke", "#fff")          // Reset border color
+          .attr("stroke-width", 1.5)       // Reset border width
+          .attr("fill", color(d.data.category)); // Reset fill color;
+      });
 
 
     // Append text to the center of each circle
-    node.append("text")
+    const labels = node.append("text")
       .attr("dy", "0.3em")  // Center text vertically
       .style("text-anchor", "middle") // Center text horizontally
       .style("fill", "#fff") // Text color
       .style("font-size", d => Math.min(2 * d.r / d.data?.name?.length, d.r / 3) + "px")  // Dynamically adjust font size
       .attr("cursor", "pointer")          // Change border color
+      .style("opacity", 0)
       .text(d => d.data.name)
       .on("mouseover", function (event, d) {
         d3.select(this.parentNode).select("circle")  // Select parent circle
@@ -102,6 +107,28 @@ const BubbleChart = ({ data }) => {
       });
 
     node.append("title").text((d) => d.data.name);
+
+    // Intro animation: float out from center, expand bubbles, fade labels
+    const baseDelay = 120;
+    const t = d3.transition().duration(1100).ease(d3.easeBackOut.overshoot(1.6));
+
+    node
+      .transition(t)
+      .delay((d, i) => i * baseDelay)
+      .style("opacity", 1)
+      .attr("transform", d => `translate(${d.x},${d.y})`);
+
+    circles
+      .transition(t)
+      .delay((d, i) => i * baseDelay + 100)
+      .attr("r", d => d.r);
+
+    labels
+      .transition()
+      .delay((d, i) => i * baseDelay + 450)
+      .duration(600)
+      .ease(d3.easeCubicOut)
+      .style("opacity", 1);
 
 
   }, [data]);
