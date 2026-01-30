@@ -145,7 +145,10 @@ export default function NavBar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <CustomNav position="fixed" color="transparent" elevation={0}>
-        <Toolbar>
+        <Toolbar sx={{ 
+          minHeight: { xs: '56px', sm: '64px' },
+          px: { xs: 1, sm: 2 }
+        }}>
           <Typography
             color={"transparent"}
             style={{
@@ -155,7 +158,11 @@ export default function NavBar() {
             fontFamily={"inherit"}
             variant="h5"
             component="div"
-            sx={{ flexGrow: 1 }}
+            sx={{ 
+              flexGrow: 1,
+              fontSize: { xs: '1.1rem', sm: '1.5rem' },
+              whiteSpace: 'nowrap'
+            }}
           >
             My Portfolio
           </Typography>

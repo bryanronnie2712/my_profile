@@ -30,9 +30,11 @@ const IButton = styled(Button)`
     & {
       border-radius: 8px;
       background: #0071e3;
-      padding: 0px 5px;
-      width: 140px;
-      font-size: 12px;
+      padding: 0 3px !important;
+      width: 75px;
+      height: 24px !important;
+      font-size: 9px !important;
+      min-width: 75px;
     }
   }
 
@@ -124,10 +126,11 @@ const GeminiButton = styled.div`
   
   @media (max-width: 600px) {
     & {
-      width: 80px;
-      font-size: 12px;
-      margin-right: 7px;
+      width: 75px;
+      font-size: 10px;
+      margin-right: 4px;
       height: 24px;
+      padding: 0 8px;
     }
 
     &::before {
