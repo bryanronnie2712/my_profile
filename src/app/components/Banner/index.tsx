@@ -6,7 +6,7 @@ export default function Banner() {
     <IContainer>
       <div className="wave"></div>
       <BannerContent>
-        <BannerText>Hello! I'm Bryan</BannerText>
+        <BannerText>Hello! I&apos;m Bryan</BannerText>
         <BannerSubtext>
           MEng ECE(Co-op) @UWaterloo | Fullstack Dev
         </BannerSubtext>
