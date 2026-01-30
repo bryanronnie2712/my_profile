@@ -48,7 +48,9 @@ export default function ArtGallery() {
                 key={"art" + index}
                 src={art.src}
                 alt=""
-                layout="responsive"
+                width={200}
+                height={200}
+                style={{ width: '100%', height: 'auto' }}
               />
             </ImageWrapper>
           ))}

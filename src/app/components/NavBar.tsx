@@ -321,6 +321,7 @@ export default function NavBar() {
   const [modalInnerAnimation, setModalInnerAnimation] = useState("appear");
   const [windowMode, setWindowMode] = useState(1);
   const [tooltip5sec, setTooltip5sec] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   setTimeout(() => setTooltip5sec(false), 8000);
 
@@ -386,6 +387,7 @@ export default function NavBar() {
   }>({});
 
   const matchResumePrompt = async (query: string) => {
+    setIsLoading(true);
     const LLMInput = `
     Refer my information as a resume, biography, etc & answer the questions in the first-person. 
     Always the first character of the answer should be "{" and last be "}"
@@ -561,11 +563,13 @@ The LLM's sole task is to function as an intelligent interviewer-facing knowledg
       const extracted = llmResponse.match(/\{.*\}/)?.[0] || "";
       console.log("resumeMatchDetails", extracted);
       setResumeMatchDetails(JSON.parse(extracted));
+      setIsLoading(false);
     } catch {
       setResumeMatchDetails({
         answer:
           "We are facing connectivity problem with Gemini. Can you please go back and retry? 😊",
       });
+      setIsLoading(false);
     }
   };
 
@@ -599,6 +603,7 @@ The LLM's sole task is to function as an intelligent interviewer-facing knowledg
   const handleGoBack = () => {
     // Call your matchResumePrompt function here
     setResumeMatchDetails({});
+    setIsLoading(false);
     // matchResumePrompt(JD);
 
     // Move to the next slide
@@ -608,36 +613,6 @@ The LLM's sole task is to function as an intelligent interviewer-facing knowledg
   return (
     <Box sx={{ flexGrow: 1 }}>
       <CustomNav position="fixed">
-        {/* {salutation !== "" && (
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              background: "#00B74A",
-              fontWeight: "500",
-              textAlign: "center",
-            }}
-          >
-            <NotificationBar
-              display={(salutation !== "" && displayNotification).toString()}
-            >
-              {Message}
-            </NotificationBar>{" "}
-            {displayNotification && (
-              <div
-                onClick={() => setDisplayNotification(false)}
-                style={{
-                  display: "inline-block",
-                  cursor: "pointer",
-                  marginRight: 10,
-                }}
-              >
-                <Image src={CloseIcon} height="17" width="17" alt={""} />
-              </div>
-            )}
-          </div>
-        )} */}
-
         <Toolbar>
           <Typography
             color={"transparent"}
@@ -763,7 +738,7 @@ The LLM's sole task is to function as an intelligent interviewer-facing knowledg
                     </RowEndFlex>
                   </div>
 
-                  {!resumeMatchDetails && (
+                  {isLoading && (
                     <div
                       style={{
                         display: "flex",
