@@ -29,8 +29,9 @@ const IButton = styled(Button)`
   @media (max-width: 600px) {
     & {
       border-radius: 8px;
+      background: #0071e3;
       padding: 0px 5px;
-      width: 110px;
+      width: 140px;
       font-size: 12px;
     }
   }

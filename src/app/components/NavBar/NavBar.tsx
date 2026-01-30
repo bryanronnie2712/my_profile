@@ -447,13 +447,13 @@ export default function NavBar() {
           <IButton
             onClick={(e) => {
               window.open(
-                "https://drive.google.com/file/d/1decjwZYo2XrybCoOZ7h21r8qHcj57_ey/view?usp=sharing"
+                "https://drive.google.com/file/d/1Ltz9hkVKGeBUYYQ9ye0xv8GNb0kPVGOi/view?usp=sharing"
               );
             }}
             variant="contained"
-            color="inherit"
+            // color="inherit"
           >
-            My CV/Resumé
+            My Resumé
           </IButton>
         </Toolbar>
       </CustomNav>
