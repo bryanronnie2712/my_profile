@@ -10,6 +10,7 @@ import Instagram from "./instagram.jpg";
 import TextEditorImg from "./text-editor.jpg";
 import VideoConferencing from "./video-conferencing-icon-free-vector.jpg";
 import Splitz from "./splitz.png";
+import Kvitta from "./10647636.png";
 import MusicImage from "./instruments.png";
 // Tech Icons
 import JavaLogo from "./tech-icons/java.png";
@@ -65,6 +66,7 @@ export {
   SpringerBook,
   VideoConferencing,
   Splitz,
+  Kvitta,
   PostgreSQLLogo,
   GCPLogo,
   ReactLogo,

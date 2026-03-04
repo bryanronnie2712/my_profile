@@ -7,10 +7,26 @@ import {
   MusicImage,
   TextEditorImg,
   VideoConferencing,
-  Splitz
+  Splitz,
+  Kvitta
 } from "../../assets";
 
 export const cards: Card[] = [
+    {
+    title: "Kvitta",
+    description: "Splitz is now Kvitta! Expense splitting + Ledger all inclusive",
+    image: Kvitta,
+    background: "repeating-radial-gradient(circle at -10% -10%, #4a4646, #30322d 0.5px, #161f0d 0.7px, #080a09 4px)",
+    color: "white",
+    tags: [
+      { text: "NextJS", color: "white", bgColor: "black" },
+      { text: "FastAPI", color: "white", bgColor: "teal" },
+      { text: "Vercel", color: "black", bgColor: "grey" },
+      { text: "GCP", color: "black", bgColor: "conic-gradient( #3070b2, #3070b2,#3070b2, #e9b643, #e9b643, #e9b643, #d24f3e, #d24f3e, #d24f3e)" },
+      { text: "Heroku", color: "white", bgColor: "#2e0e60"}
+    ],
+    url: "https://kvitta.vercel.app/",
+  },
   {
     title: "Splitz",
     description: "Split instacart expenses with ease",
