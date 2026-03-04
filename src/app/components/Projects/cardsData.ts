@@ -16,7 +16,7 @@ export const cards: Card[] = [
     title: "Kvitta",
     description: "Splitz is now Kvitta! Expense splitting + Ledger all inclusive",
     image: Kvitta,
-    background: "repeating-radial-gradient(circle at -10% -10%, #4a4646, #30322d 0.5px, #161f0d 0.7px, #080a09 4px)",
+    background: "repeating-radial-gradient(circle at -10% -10%, rgb(31 40 45), rgb(37, 21, 34) 1.5px, rgb(0 0 0) 2.7px, rgb(8, 10, 9) 5px)",
     color: "white",
     tags: [
       { text: "NextJS", color: "white", bgColor: "black" },
